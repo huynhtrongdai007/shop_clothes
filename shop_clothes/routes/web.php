@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Admin template
+Route::get('/admin-login', [UserController::class, 'login']);
+Route::get('/admin-user', [UserController::class, 'index']);
+Route::get('/admin-user-create', [UserController::class, 'create']);
+Route::get('/admin-user-edit/{id}', [UserController::class, 'edit']);
+Route::get('/admin-user-show/{id}', [UserController::class, 'show']);
+
+
+
