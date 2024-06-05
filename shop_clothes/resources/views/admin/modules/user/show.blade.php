@@ -53,7 +53,7 @@
                                             <p>
                                                 <img style="height: 200px;" class="rounded-circle" data-toggle="tooltip"
                                                     title="Avatar" data-placement="bottom"
-                                                    src="assets/images/_default-user.png" alt="Avatar">
+                                                    src="{{asset('admin/assets/images/_default-user.png')}}" alt="Avatar">
                                             </p>
                                         </div>
                                     </div>
@@ -75,15 +75,6 @@
                                     </div>
 
                                     <div class="position-relative row form-group">
-                                        <label for="company_name" class="col-md-3 text-md-right col-form-label">
-                                            Company Name
-                                        </label>
-                                        <div class="col-md-9 col-xl-8">
-                                            <p>CodeLean</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="position-relative row form-group">
                                         <label for="country"
                                             class="col-md-3 text-md-right col-form-label">Country</label>
                                         <div class="col-md-9 col-xl-8">
@@ -99,14 +90,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="position-relative row form-group">
-                                        <label for="postcode_zip" class="col-md-3 text-md-right col-form-label">
-                                            Postcode Zip</label>
-                                        <div class="col-md-9 col-xl-8">
-                                            <p>10000</p>
-                                        </div>
-                                    </div>
-
+                                
                                     <div class="position-relative row form-group">
                                         <label for="town_city" class="col-md-3 text-md-right col-form-label">
                                             Town City</label>
@@ -126,14 +110,6 @@
                                         <label for="level" class="col-md-3 text-md-right col-form-label">Level</label>
                                         <div class="col-md-9 col-xl-8">
                                             <p>Admin</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="position-relative row form-group">
-                                        <label for="description"
-                                            class="col-md-3 text-md-right col-form-label">Description</label>
-                                        <div class="col-md-9 col-xl-8">
-                                            <p>description</p>
                                         </div>
                                     </div>
                                 </div>

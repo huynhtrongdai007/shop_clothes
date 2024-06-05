@@ -51,7 +51,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">Copyright © CodeLean 2022</div>
                     </div>
                 </div>
             </div>
