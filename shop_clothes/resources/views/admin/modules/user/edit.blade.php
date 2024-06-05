@@ -48,7 +48,7 @@
                                                 <img style="height: 200px; cursor: pointer;"
                                                     class="thumbnail rounded-circle" data-toggle="tooltip"
                                                     title="Click to change the image" data-placement="bottom"
-                                                    src="assets/images/_default-user.png" alt="Avatar">
+                                                    src="{{asset('admin/assets/images/_default-user.png')}}" alt="Avatar">
                                                 <input name="image" type="file" onchange="changeImg(this)"
                                                     class="image form-control-file" style="display: none;" value="">
                                                 <input type="hidden" name="image_old" value="">
@@ -94,17 +94,6 @@
                                         </div>
 
                                         <div class="position-relative row form-group">
-                                            <label for="company_name" class="col-md-3 text-md-right col-form-label">
-                                                Company Name
-                                            </label>
-                                            <div class="col-md-9 col-xl-8">
-                                                <input name="company_name" id="company_name"
-                                                    placeholder="Company Name" type="text" class="form-control"
-                                                    value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="position-relative row form-group">
                                             <label for="country"
                                                 class="col-md-3 text-md-right col-form-label">Country</label>
                                             <div class="col-md-9 col-xl-8">
@@ -123,28 +112,6 @@
                                                     value="">
                                             </div>
                                         </div>
-
-                                        <div class="position-relative row form-group">
-                                            <label for="postcode_zip" class="col-md-3 text-md-right col-form-label">
-                                                Postcode Zip
-                                            </label>
-                                            <div class="col-md-9 col-xl-8">
-                                                <input name="postcode_zip" id="postcode_zip"
-                                                    placeholder="Postcode Zip" type="text" class="form-control"
-                                                    value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="position-relative row form-group">
-                                            <label for="town_city" class="col-md-3 text-md-right col-form-label">
-                                                Town City
-                                            </label>
-                                            <div class="col-md-9 col-xl-8">
-                                                <input name="town_city" id="town_city" placeholder="Town City"
-                                                    type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-
                                         <div class="position-relative row form-group">
                                             <label for="phone"
                                                 class="col-md-3 text-md-right col-form-label">Phone</label>
@@ -170,14 +137,6 @@
                                                         Client
                                                     </option>
                                                 </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="position-relative row form-group">
-                                            <label for="description"
-                                                   class="col-md-3 text-md-right col-form-label">Description</label>
-                                            <div class="col-md-9 col-xl-8">
-                                                <textarea name="description" id="description" class="form-control"></textarea>
                                             </div>
                                         </div>
 
