@@ -36,10 +36,6 @@ Route::post('/admin-brand-store', [BrandController::class, 'store'])->name('stor
 Route::get('/admin-brand-edit/{id}', [BrandController::class, 'edit'])->name('edit.brand');
 Route::get('/admin-brand-destroy/{id}', [BrandController::class, 'destroy'])->name('destroy.brand');
 
-
-
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
