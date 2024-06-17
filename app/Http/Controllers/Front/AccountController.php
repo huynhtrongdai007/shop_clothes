@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Front;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\User\UserServiceInterface;
@@ -45,17 +46,44 @@ class AccountController extends Controller
     {
         Auth::logout();
 
-        return back();
+        return redirect( './acc/login');
     }
 
     public function postRegister(Request $request)
     {
-        if ($request->password != $request->password_confirmation)
+
+        if ($request->password != "" && $request->password_confirmation !="" && $request->password != $request->password_confirmation)
         {
             return back()
                 ->with ('notification', 'ERROR: Password does not match');
         }
-
+        else if ($request->password =="")
+        {
+            return back()
+                ->with ('notification', 'ERROR: Password empty, please typing in');
+        }
+        else if ($request->password_confirmation =="")
+        {
+            return back()
+                ->with ('notification', 'ERROR: Confirm password empty, please typing in');
+        }
+        else if ($request->name =="" )
+        {
+            return back()
+                ->with ('notification', 'ERROR: User name empty, please typing in');
+        }
+        else if ($request-> email=="")
+        {
+            return back()
+                ->with ('notification', 'ERROR: User email empty, please typing in');
+        }
+        $email = $request->email;
+        $user = user::where('email', $email)->first();
+        if ($user)
+        {   return back()
+                ->with('notification', 'ERROR: Email already exist');
+        }
+        else {
             $data=[
                 'name'=> $request->name,
                 'email'=> $request->email,
@@ -69,6 +97,8 @@ class AccountController extends Controller
 
             return redirect('acc/login')
                 ->with('notification','Registered successfully, please login');
+        }
+
 
 
     }

@@ -50,10 +50,12 @@
                 <div class="ht-right">
 
                     @if (Auth::check())
-                        <a href="./acc/logout" class="login-panel">
-                            <i class="fa fa-user"></i>
-                            {{ Auth::user()->name }}  <button>Logout</button>
+                        <span class="login-panel"> <i class="fa fa-user"></i>
+                         {{ Auth::user()->name }}
+                        <a href="./acc/logout" >
+                             <button>Logout</button>
                         </a>
+                        </span>
                     @else
                         <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
