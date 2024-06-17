@@ -15,7 +15,12 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('index.category') }}">
+                        Category
+                    </x-jet-nav-link>
                 </div>
+              
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

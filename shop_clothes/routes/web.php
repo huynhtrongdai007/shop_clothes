@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,16 @@ Route::get('/admin-brand-create', [BrandController::class, 'create'])->name('bra
 Route::post('/admin-brand-store', [BrandController::class, 'store'])->name('store.brand');
 Route::get('/admin-brand-edit/{id}', [BrandController::class, 'edit'])->name('edit.brand');
 Route::get('/admin-brand-destroy/{id}', [BrandController::class, 'destroy'])->name('destroy.brand');
+/** module brand* */
+Route::get('/admin-catetory', [CategoryController::class, 'index'])->name('index.category');
+Route::get('/admin-category-create', [CategoryController::class, 'create'])->name('create.catetory');
+Route::post('/admin-catetory-store', [CategoryController::class, 'store'])->name('store.category');
+Route::get('/admin-catetory-edit/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('update.category');
+Route::get('/admin-catetory-destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy.category');
+Route::get('/softdele/category/{id}',[CategoryController::class,'destroy'])->name('soft.delete');
+Route::get('/category/restore/{id}',[CategoryController::class,'restore'])->name('restore');
+Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('delete');
 
 Route::middleware([
     'auth:sanctum',

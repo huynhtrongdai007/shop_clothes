@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
 use Illuminate\Support\Carbon;
+use App\Models\category;
+use Auth;
 
-
-class BrandController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('admin.modules.brand.index',compact('brands'));
+        $categories = category::latest()->paginate(5);
+        $trachCat = category::onlyTrashed()->latest()->paginate(3);
+        return view('admin.modules.category.index',compact('categories','trachCat'));
     }
 
     /**
@@ -28,7 +29,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.modules.brand.create');
+        return view('admin.modules.category.create');
     }
 
     /**
@@ -40,17 +41,19 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name'=>'required|unique:brands|max:255',
+            'name'=>'required|unique:categories|max:255',
         ],
         [
-            'name.required'=>'Please Input Brand Name',
+            'name.required'=>'Please Input Category Name',
         ]);
 
-        Brand::insert([
+        category::insert([
             'name'=>$request->name,
+            'user_id' => Auth::user()->id,
             'created_at'=>Carbon::now()
+            
         ]);
-        return Redirect()->back()->with('success','Brand Inserted Sucessfully');
+        return Redirect()->back()->with('success','Category Inserted Sucessfully');
     }
 
     /**
@@ -72,8 +75,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::find($id);
-        return view('admin.modules.brand.edit',compact('brand'));
+        $category = category::find($id);
+        return view('admin.modules.category.edit',compact('category'));
     }
 
     /**
@@ -89,14 +92,14 @@ class BrandController extends Controller
             'name'=>'required|max:255',
         ],
         [
-            'name.required'=>'Please Input Brand Name',
+            'name.required'=>'Please Input Category Name',
         ]);
-
-        Brand::update([
+        category::find($id)->update([
             'name'=>$request->name,
+            'user_id'=>Auth::user()->id,
             'update_at'=>Carbon::now()
         ]);
-        return Redirect()->back()->with('success','Brand Updated Sucessfully');
+        return Redirect()->route('index.category')->with('success','Category Updated Sucessfully');
     }
 
     /**
@@ -107,7 +110,18 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        Brand::find($id)->delete();
-        return Redirect()->back()->with('success','Brand Deleted Sucessfully');
+        $delete = category::find($id)->delete();
+        return Redirect()->back()->with('success','Category Soft Delete Successfull');
+    }
+
+    public function restore($id) {
+        $delete = category::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Category Restore Successfull');
+    }
+
+    public function delete($id) {
+        category::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Category Permanently Deleete Successfull');
+
     }
 }
