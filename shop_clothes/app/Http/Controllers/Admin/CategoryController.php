@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = category::latest()->paginate(5);
+        // $categories = category::latest()->paginate(5);
         $trachCat = category::onlyTrashed()->latest()->paginate(3);
         return view('admin.modules.category.index',compact('categories','trachCat'));
     }
