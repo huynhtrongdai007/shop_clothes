@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         DB::table('blogs')->insert([
             [
                 'id' => 1,
-                'user_id' => 10,
+                'user_id' => 3,
                 'title' => 'The Personality Trait That Makes People Happier',
                 'subtitle' => 'abc',
                 'image' => 'blog-1.jpg',
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'user_id' => 11,
+                'user_id' => 3,
                 'title' => 'This was one of our first days in Hawaii last week.',
                 'subtitle' => 'abc',
                 'image' => 'blog-2.jpg',
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'user_id' => 12,
+                'user_id' => 3,
                 'title' => 'Last week I had my first work trip of the year to Sonoma Valley',
                 'subtitle' => 'abc',
                 'image' => 'blog-3.jpg',
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'user_id' => 13,
+                'user_id' => 3,
                 'title' => 'Happppppy New Year! I know I am a little late on this post',
                 'subtitle' => 'abc',
                 'image' => 'blog-4.jpg',
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'user_id' => 14,
+                'user_id' => 3,
                 'title' => 'Absolue collection. The Lancome team has been one…',
                 'subtitle' => 'abc',
                 'image' => 'blog-5.jpg',
@@ -113,7 +113,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 6,
-                'user_id' => 15,
+                'user_id' => 3,
                 'title' => 'Writing has always been kind of therapeutic for me',
                 'subtitle' => 'abc',
                 'image' => 'blog-6.jpg',
