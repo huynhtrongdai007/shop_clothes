@@ -92,7 +92,7 @@ class BrandController extends Controller
             'name.required'=>'Please Input Brand Name',
         ]);
 
-        Brand::update([
+        Brand::find($id)->update([
             'name'=>$request->name,
             'update_at'=>Carbon::now()
         ]);

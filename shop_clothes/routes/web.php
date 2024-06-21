@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 
 
 /*
@@ -37,7 +38,7 @@ Route::get('/admin-brand-create', [BrandController::class, 'create'])->name('bra
 Route::post('/admin-brand-store', [BrandController::class, 'store'])->name('store.brand');
 Route::get('/admin-brand-edit/{id}', [BrandController::class, 'edit'])->name('edit.brand');
 Route::get('/admin-brand-destroy/{id}', [BrandController::class, 'destroy'])->name('destroy.brand');
-/** module brand* */
+/** module Category* */
 Route::get('/admin-catetory', [CategoryController::class, 'index'])->name('index.category');
 Route::get('/admin-category-create', [CategoryController::class, 'create'])->name('create.catetory');
 Route::post('/admin-catetory-store', [CategoryController::class, 'store'])->name('store.category');
@@ -47,6 +48,16 @@ Route::get('/admin-catetory-destroy/{id}', [CategoryController::class, 'destroy'
 Route::get('/softdele/category/{id}',[CategoryController::class,'destroy'])->name('soft.delete');
 Route::get('/category/restore/{id}',[CategoryController::class,'restore'])->name('restore');
 Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('delete');
+/** module Product* */
+Route::get('/admin-product', [ProductController::class, 'index'])->name('index.product');
+Route::get('/admin-create-product', [ProductController::class, 'create'])->name('create.product');
+Route::post('/admin-product-store', [ProductController::class, 'store'])->name('store.product');
+Route::get('/admin-product-edit/{id}', [ProductController::class, 'edit'])->name('edit.product');
+Route::post('/product/update/{id}',[ProductController::class,'update'])->name('update.product');
+Route::get('/admin-product-destroy/{id}', [ProductController::class, 'destroy'])->name('destroy.product');
+Route::get('/softdele/product/{id}',[ProductController::class,'destroy'])->name('soft.delete.product');
+Route::get('/product/restore/{id}',[ProductController::class,'restore'])->name('restore.product');
+Route::get('/product/delete/{id}',[ProductController::class,'delete'])->name('delete.product');
 
 Route::middleware([
     'auth:sanctum',
