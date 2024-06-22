@@ -48,9 +48,16 @@
                 </div>
                 <div class="ht-right">
 
-                    @if (Auth::check())
+
+                    @php
+                    $customer = Session::get('customer');
+                    @endphp
+
+                    @if ($customer)
                         <span class="login-panel"> <i class="fa fa-user"></i>
-                         {{ Auth::user()->name }}
+                        @php
+                           echo(Session::get('customer_name'));
+                        @endphp
                         <a href="./acc/logout" >
                              <button>Logout</button>
                         </a>

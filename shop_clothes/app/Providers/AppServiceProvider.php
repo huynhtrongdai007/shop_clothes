@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\User\UserRepository;
-use App\Repositories\User\UserRepositoryInterface;
-use App\Service\User\UserService;
-use App\Service\User\UserServiceInterface;
+use App\Repositories\Customer\CustomerRepository;
+use App\Repositories\Customer\CustomerRepositoryInterface;
+use App\Service\Customer\CustomerService;
+use App\Service\Customer\CustomerServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,14 +18,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
 
-        //User
+        //Customer
         $this->app->singleton(
-            UserRepositoryInterface::class,
-            UserRepository::class
+            CustomerRepositoryInterface::class,
+            CustomerRepository::class
         );
         $this->app->singleton(
-            UserServiceInterface::class,
-            UserService::class
+            CustomerServiceInterface::class,
+            CustomerService::class
         );
     }
 

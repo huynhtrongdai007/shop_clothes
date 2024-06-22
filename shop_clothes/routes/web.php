@@ -58,9 +58,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
 Route::get('/', function () {
     return view('front.index');
 });
+//Route::get('',[\App\Http\Controllers\Front\HomeComtroller::class,'index'])->name('front.index');
+
 Route::prefix( 'shop') -> group(function (){
     Route::get('',[\App\Http\Controllers\Front\ShopController::class,'index']);
 });
@@ -72,7 +75,7 @@ Route::get('shop/product/{id}',[\App\Http\Controllers\Front\ShopController::clas
 Route::prefix( 'acc') -> group(function (){
     Route::get('login',[AccountController::class,'login']);
     Route::get('register',[AccountController::class,'register']);
-    Route::post('login',[AccountController::class,'checkLogin']);
+    Route::post('login',[AccountController::class,'CustomerLogin']);
     Route::post('register',[AccountController::class,'postRegister']);
     Route::get('logout',[AccountController::class,'logout']);
 });

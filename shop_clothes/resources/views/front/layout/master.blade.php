@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -48,10 +49,15 @@
                     </div>
                 </div>
                 <div class="ht-right">
+                    @php
+                    $customer = Session::get('customer');
+                    @endphp
 
-                    @if (Auth::check())
+                    @if ($customer)
                         <span class="login-panel"> <i class="fa fa-user"></i>
-                         {{ Auth::user()->name }}
+                        @php
+                           echo(Session::get('customer_name'));
+                        @endphp
                         <a href="./acc/logout" >
                              <button>Logout</button>
                         </a>
@@ -59,6 +65,7 @@
                     @else
                         <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
+
 
 
 
