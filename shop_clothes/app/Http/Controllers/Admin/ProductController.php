@@ -8,6 +8,9 @@ use Illuminate\Support\Carbon;
 use App\Models\category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductImages;
+use Illuminate\Support\Facades\DB;
+use Image;
 use Auth;
 
 class ProductController extends Controller
@@ -64,7 +67,8 @@ class ProductController extends Controller
             'sku.required'=>'Please input product sku',
         ]);
 
-        Product::insert([
+
+       $product_id = DB::table('products')->insertGetId([
             'name'=>$request->name,
             'brand_id'=>$request->brand_id,
             'category_id'=>$request->category_id,
@@ -78,6 +82,24 @@ class ProductController extends Controller
             'featured'=>$request->featured,
             'created_at'=>Carbon::now()
         ]);
+
+        if($request->hasFile('images')) {
+            
+            $product_image = $request->file('images');
+                foreach($product_image as $multi_img) {
+
+                    $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+                    Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
+                    $last_img = 'image/product/'.$name_gen;
+
+                    ProductImages::insert([
+                        'product_id'=>$product_id,
+                        'path'=>$last_img,
+                        'created_at'=>Carbon::now()
+                    ]);
+            }
+        }
+
         return Redirect()->back()->with('success','Product Inserted Sucessfully');
     }
 
@@ -89,7 +111,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $brands = Brand::all();
+        $categories = category::all();
+        return view('admin.modules.product.show',compact('product','brands','categories'));
     }
 
     /**
@@ -103,7 +128,9 @@ class ProductController extends Controller
         $product = Product::find($id);
         $brands = Brand::all();
         $categories = category::all();
-        return view('admin.modules.product.edit',compact('product','brands','categories'));
+        $product_image = ProductImages::find($id);
+
+        return view('admin.modules.product.edit',compact('product','brands','categories','ProductImages'));
     }
 
     /**
@@ -147,6 +174,7 @@ class ProductController extends Controller
             'featured'=>$request->featured,
             'updated_at'=>Carbon::now()
         ]);
+
         return Redirect()->back()->with('success','Product Updated Sucessfully');
     }
 

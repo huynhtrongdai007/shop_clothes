@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImageController;
 
 
 /*
@@ -58,6 +59,9 @@ Route::get('/admin-product-destroy/{id}', [ProductController::class, 'destroy'])
 Route::get('/softdele/product/{id}',[ProductController::class,'destroy'])->name('soft.delete.product');
 Route::get('/product/restore/{id}',[ProductController::class,'restore'])->name('restore.product');
 Route::get('/product/delete/{id}',[ProductController::class,'delete'])->name('delete.product');
+Route::get('/product/show/{id}',[ProductController::class,'show'])->name('show.product');
+Route::get('/product/{id}/image',[ProductImageController::class,'index'])->name('index.product.image');
+
 
 Route::middleware([
     'auth:sanctum',

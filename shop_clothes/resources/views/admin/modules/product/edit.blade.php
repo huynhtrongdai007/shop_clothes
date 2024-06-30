@@ -50,7 +50,7 @@
                       <div class="form-row">
                         <div class="form-group col-md-6">
                           <label>Name</label>
-                          <input type="text" class="form-control" name="name" value="{{$product->name}}">
+                          <input type="text" class="form-control" readonly name="name" value="{{$product->name}}">
                           @error('name')
                               <span class="text-class text-danger">{{$message}}</span>
                           @enderror
@@ -111,7 +111,7 @@
                       </div>
                       <div class="form-group">
                         <label>Description</label>
-                          <textarea type="text" class="form-control" name="description" rows="10">
+                          <textarea type="text" class="form-control" name="description" id="description" rows="10">
                             {{$product->description}}
                           </textarea>
                       </div>
@@ -123,10 +123,12 @@
               
             </div>
             <div class="col-md-4">
-         
+                
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script> CKEDITOR.replace('description') </script>
   </x-app-layout>
