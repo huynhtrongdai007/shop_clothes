@@ -17,8 +17,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('admin.modules.brand.index',compact('brands'));
+        $brands = Brand::latest()->paginate(5);
+        $trachCat = Brand::onlyTrashed()->latest()->paginate(3);
+        return view('admin.modules.brand.index',compact('brands','trachCat'));
     }
 
     /**
@@ -51,17 +52,6 @@ class BrandController extends Controller
             'created_at'=>Carbon::now()
         ]);
         return Redirect()->back()->with('success','Brand Inserted Sucessfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -109,5 +99,16 @@ class BrandController extends Controller
     {
         Brand::find($id)->delete();
         return Redirect()->back()->with('success','Brand Deleted Sucessfully');
+    }
+
+    public function restore($id) {
+        $delete = Brand::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Brand Restore Successfull');
+    }
+
+    public function delete($id) {
+        Brand::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Brand Permanently Deleete Successfull');
+
     }
 }

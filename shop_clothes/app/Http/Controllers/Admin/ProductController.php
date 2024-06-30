@@ -177,17 +177,17 @@ class ProductController extends Controller
         if($request->hasFile('images')) {
             
             $product_image = $request->file('images');
-                foreach($product_image as $multi_img) {
+            foreach($product_image as $multi_img) {
 
-                    $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
-                    Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
-                    $last_img = 'image/product/'.$name_gen;
+                $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+                Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
+                $last_img = 'image/product/'.$name_gen;
 
-                    ProductImages::find()->update([
-                        'product_id'=>$id,
-                        'path'=>$last_img,
-                        'updated_at'=>Carbon::now()
-                    ]);
+                ProductImages::find()->update([
+                    'product_id'=>$id,
+                    'path'=>$last_img,
+                    'updated_at'=>Carbon::now()
+                ]);
             }
         }
 

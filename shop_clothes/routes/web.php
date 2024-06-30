@@ -34,11 +34,14 @@ Route::get('/admin-user-edit/{id}', [UserController::class, 'edit']);
 Route::get('/admin-user-show/{id}', [UserController::class, 'show']);
 /** module brand* */
 
-Route::get('/admin-brand', [BrandController::class, 'index'])->name('brand.index');
+Route::get('/admin-brand', [BrandController::class, 'index'])->name('index.brand');
 Route::get('/admin-brand-create', [BrandController::class, 'create'])->name('brand.create');
 Route::post('/admin-brand-store', [BrandController::class, 'store'])->name('store.brand');
 Route::get('/admin-brand-edit/{id}', [BrandController::class, 'edit'])->name('edit.brand');
 Route::get('/admin-brand-destroy/{id}', [BrandController::class, 'destroy'])->name('destroy.brand');
+Route::get('/softdele/brand/{id}',[BrandController::class,'destroy'])->name('soft.delete.brand');
+Route::get('/brand/restore/{id}',[BrandController::class,'restore'])->name('restore.brand');
+Route::get('/brand/delete/{id}',[BrandController::class,'delete'])->name('delete.brand');
 /** module Category* */
 Route::get('/admin-catetory', [CategoryController::class, 'index'])->name('index.category');
 Route::get('/admin-category-create', [CategoryController::class, 'create'])->name('create.catetory');
