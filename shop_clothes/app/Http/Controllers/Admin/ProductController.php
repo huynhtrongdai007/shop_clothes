@@ -128,9 +128,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $brands = Brand::all();
         $categories = category::all();
-        $product_image = ProductImages::find($id);
-
-        return view('admin.modules.product.edit',compact('product','brands','categories','ProductImages'));
+        $product_image =  DB::table('product_images')->where('product_id',$product->id)->get();
+        return view('admin.modules.product.edit',compact('product','brands','categories','product_image'));
     }
 
     /**
@@ -175,6 +174,23 @@ class ProductController extends Controller
             'updated_at'=>Carbon::now()
         ]);
 
+        if($request->hasFile('images')) {
+            
+            $product_image = $request->file('images');
+                foreach($product_image as $multi_img) {
+
+                    $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+                    Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
+                    $last_img = 'image/product/'.$name_gen;
+
+                    ProductImages::find()->update([
+                        'product_id'=>$id,
+                        'path'=>$last_img,
+                        'updated_at'=>Carbon::now()
+                    ]);
+            }
+        }
+
         return Redirect()->back()->with('success','Product Updated Sucessfully');
     }
 
@@ -198,6 +214,11 @@ class ProductController extends Controller
 
     public function delete($id) {
         Product::onlyTrashed()->find($id)->forceDelete();
+        $product_ids = DB::table('product_images')->where('product_id',$id)->get();
+        foreach($product_ids as $item) {
+            ProductImages::find($item->id)->delete();
+        }
+        
         return Redirect()->back()->with('success','Product Permanently Deleete Successfull');
     }
 }

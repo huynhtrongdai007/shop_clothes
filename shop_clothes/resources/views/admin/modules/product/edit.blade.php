@@ -18,7 +18,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                @endif
+                  @endif
                     <form action="{{route('update.product',$product->id)}}" method="POST">
                       @csrf
                       <div class="form-row">
@@ -123,7 +123,23 @@
               
             </div>
             <div class="col-md-4">
+              <div class="row">
+                <div class="card">
+                  <div class="card-body">
+                    <input type="file" name="images" class="form-control">
+                  </div>
                 
+                </div>
+                <div class="col-md-12">
+                  <div class="card-body">
+                    @foreach ($product_image as $item)
+                        <img src="{{asset($item->path)}}" alt="">
+                    @endforeach
+                  </div>
+                </div>
+              
+              </div>
+              
             </div>
           </div>
         </div>
