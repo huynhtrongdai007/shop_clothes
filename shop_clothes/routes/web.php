@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Front\AccountController;
 
 
 /*
@@ -74,4 +75,42 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::get('/', function () {
+    return view('front.index');
+});
+//Route::get('',[\App\Http\Controllers\Front\HomeComtroller::class,'index'])->name('front.index');
+
+Route::prefix( 'shop') -> group(function (){
+    Route::get('',[\App\Http\Controllers\Front\ShopController::class,'index']);
+});
+
+Route::get('shop/product/{id}',[\App\Http\Controllers\Front\ShopController::class,'product']);
+
+
+
+Route::prefix( 'acc') -> group(function (){
+    Route::get('login',[AccountController::class,'login']);
+    Route::get('register',[AccountController::class,'register']);
+    Route::post('login',[AccountController::class,'CustomerLogin']);
+    Route::post('register',[AccountController::class,'postRegister']);
+    Route::get('logout',[AccountController::class,'logout']);
+});
+
+
+
+Route::prefix( 'blog') -> group(function (){
+    Route::get('',[\App\Http\Controllers\Front\BlogController::class,'blog']);
+});
+
+Route::prefix( 'contact') -> group(function (){
+    Route::get('',[\App\Http\Controllers\Front\ContactController::class,'contact']);
+});
+
+Route::prefix( 'page') -> group(function (){
+    Route::get('details',[\App\Http\Controllers\Front\PageController::class,'details']);
+    Route::get('shoppingcart',[\App\Http\Controllers\Front\PageController::class,'shoppingcart']);
+    Route::get('checkout',[\App\Http\Controllers\Front\PageController::class,'checkout']);
+    Route::get('faq',[\App\Http\Controllers\Front\PageController::class,'faq']);
 });
