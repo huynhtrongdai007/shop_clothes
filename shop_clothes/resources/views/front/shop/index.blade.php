@@ -26,9 +26,18 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            <li><a href="#">
+                                    @foreach($categories_name as $categories)
+                                        {{$categories-> name}}
+                                    @endforeach</a></li>
+                            <li><a href="#">
+                                    @foreach($categories_name_2 as $categories)
+                                        {{$categories-> name}}
+                                    @endforeach</a></li>
+                            <li><a href="#">
+                                    @foreach($categories_name_3 as $categories)
+                                        {{$categories-> name}}
+                                    @endforeach</a></li>
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -36,7 +45,9 @@
                         <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-calvin">
-                                    Calvin Klein
+                                    @foreach($brands_name as $brand)
+                                        {{$brand-> name}}
+                                    @endforeach
                                     <input type="checkbox" id="bc-calvin">
                                     <span class="checkmark"></span>
                                 </label>
@@ -45,7 +56,9 @@
                         <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-polo">
-                                    polo
+                                    @foreach($brands_name_2 as $brand)
+                                        {{$brand-> name}}
+                                    @endforeach
                                     <input type="checkbox" id="bc-polo">
                                     <span class="checkmark"></span>
                                 </label>
@@ -54,7 +67,9 @@
                         <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-diesel">
-                                    Diesel
+                                    @foreach($brands_name_3 as $brand)
+                                        {{$brand-> name}}
+                                    @endforeach
                                     <input type="checkbox" id="bc-diesel">
                                     <span class="checkmark"></span>
                                 </label>
@@ -63,7 +78,9 @@
                         <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-tommy">
-                                    Tommy
+                                    @foreach($brands_name_4 as $brand)
+                                        {{$brand-> name}}
+                                    @endforeach
                                     <input type="checkbox" id="bc-tommy">
                                     <span class="checkmark"></span>
                                 </label>

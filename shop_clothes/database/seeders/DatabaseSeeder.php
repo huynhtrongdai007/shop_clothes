@@ -170,16 +170,16 @@ class DatabaseSeeder extends Seeder
 
         DB::table('brands')->insert([
             [
-                'name' => 'AAAAA',
+                'name' => 'CK_1',
             ],
             [
-                'name' => 'Diesel',
+                'name' => 'Diesel_2',
             ],
             [
-                'name' => 'Polo',
+                'name' => 'Polo_3',
             ],
             [
-                'name' => 'Tommy Hilfiger',
+                'name' => 'Tommy Hilfiger_4',
             ],
         ]);
 
