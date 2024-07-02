@@ -183,7 +183,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('product_categories')->insert([
+        DB::table('categories')->insert([
             [
                 'name' => 'Men',
             ],

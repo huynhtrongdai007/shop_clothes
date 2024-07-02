@@ -15,10 +15,10 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
-    public function productCategory()
-    {
-        return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
-    }
+//    public function productCategory()
+//    {
+//        return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
+//    }
     public function productImage()
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');

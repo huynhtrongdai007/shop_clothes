@@ -26,65 +26,23 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">
-                                    @foreach($categories_name as $categories)
-                                        {{$categories-> name}}
-                                    @endforeach</a></li>
-                            <li><a href="#">
-                                    @foreach($categories_name_2 as $categories)
-                                        {{$categories-> name}}
-                                    @endforeach</a></li>
-                            <li><a href="#">
-                                    @foreach($categories_name_3 as $categories)
-                                        {{$categories-> name}}
-                                    @endforeach</a></li>
+                            @foreach($categories as $item)
+                                <li><a href="#"> {{$item-> name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-calvin">
-                                    @foreach($brands_name as $brand)
-                                        {{$brand-> name}}
-                                    @endforeach
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    @foreach($brands_name_2 as $brand)
-                                        {{$brand-> name}}
-                                    @endforeach
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    @foreach($brands_name_3 as $brand)
-                                        {{$brand-> name}}
-                                    @endforeach
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="fw-brand-check">
+                            @foreach($brands as $brand)
                             <div class="bc-item">
                                 <label for="bc-tommy">
-                                    @foreach($brands_name_4 as $brand)
                                         {{$brand-> name}}
-                                    @endforeach
                                     <input type="checkbox" id="bc-tommy">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="filter-widget">
