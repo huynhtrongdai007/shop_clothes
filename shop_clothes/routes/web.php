@@ -77,10 +77,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/', function () {
-    return view('front.index');
-});
-//Route::get('',[\App\Http\Controllers\Front\HomeComtroller::class,'index'])->name('front.index');
+Route::get('/',[\App\Http\Controllers\Front\HomeController::class,'index']);
+
 
 Route::prefix( 'shop') -> group(function (){
     Route::get('',[\App\Http\Controllers\Front\ShopController::class,'index']);

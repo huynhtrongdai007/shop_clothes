@@ -1,7 +1,9 @@
+
 @extends('front.layout.master')
 @Section('title','Home')
 @section('body')
-<!-- Hero Section Begin -->
+
+    <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="front/img/hero-1.jpg">
@@ -181,7 +183,8 @@
             <div class="col-lg-6 text-center">
                 <div class="section-title">
                     <h2>Deal Of The Week</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet, consectetur adipisicing elit </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br/> do ipsum dolor sit amet,
+                        consectetur adipisicing elit </p>
                     <div class="product-price">
                         $35.00
                         <span>/ HanBag</span>
@@ -362,69 +365,29 @@
                 </div>
             </div>
             <div class="row">
+               @foreach($blogs as $blog)
                 <div class="col-lg-4 col-md-6">
                     <div class="single-latest-blog">
-                        <img src="front/img/latest-1.jpg" alt="">
+                        <img src="front/img/blog/{{$blog->image}}" alt="">
                         <div class="latest-text">
                             <div class="tag-list">
                                 <div class="tag-item">
                                     <i class="fa fa-calendar-o"></i>
-                                    May 4,2822
+                                    {{date('M,d,Y', strtotime($blog -> created_at))}}
                                 </div>
                                 <div class="tag-item">
                                     <i class="fa fa-comment-o"></i>
-                                    5
+                                    {{count($blog->blogComment) }}
                                 </div>
                             </div>
                             <a href="">
-                                <h4>The Best Street Style From London codeLeanon Week</h4>
+                                <h4>{{$blog -> title}}</h4>
                             </a>
-                            <p> Sed quia non numquam modi tepora indunt ut labore et dolore magnam aliquam quaerat</p>
+                            <p> {{$blog -> subtittle}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="front/img/latest-2.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 25,2022
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="">
-                                <h4>The Best Street Style From London codeLeanon Week</h4>
-                            </a>
-                            <p> Sed quia non numquam modi tepora indunt ut labore et dolore magnam aliquam quaerat</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="front/img/latest-3.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    July 9, 2023
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    7
-                                </div>
-                            </div>
-                            <a href="">
-                                <h4>The Best Street Style From London codeLeanon Week</h4>
-                            </a>
-                            <p> Sed quia non numquam modi tepora indunt ut labore et dolore magnam aliquam quaerat</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="benefit-items">
                 <div class="row">
@@ -463,8 +426,8 @@
                     </div>
                 </div>
             </div>
-         </div>
-</section>
+        </div>
+    </section>
     <!-- Latest Blog Section End -->
 @endsection
 
