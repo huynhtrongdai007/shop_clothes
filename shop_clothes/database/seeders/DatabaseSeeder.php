@@ -431,8 +431,68 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'product_id' => 1,
+                'color' => 'yellow',
+                'size' => 'M',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'yellow',
+                'size' => 'L',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'yellow',
+                'size' => 'XL',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
                 'color' => 'violet',
                 'size' => 'S',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'violet',
+                'size' => 'M',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'violet',
+                'size' => 'L',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'violet',
+                'size' => 'XL',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'green',
+                'size' => 'S',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'green',
+                'size' => 'M',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'green',
+                'size' => 'L',
+                'qty' => 0,
+            ],
+            [
+                'product_id' => 1,
+                'color' => 'green',
+                'size' => 'XL',
                 'qty' => 0,
             ],
         ]);
