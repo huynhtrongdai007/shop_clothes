@@ -170,15 +170,18 @@ class DatabaseSeeder extends Seeder
 
         DB::table('brands')->insert([
             [
+                'user_id' => 1,
                 'name' => 'CK_1',
             ],
             [
+                'user_id' => 2,
                 'name' => 'Diesel_2',
             ],
             [
+                'user_id' => 3,
                 'name' => 'Polo_3',
             ],
-            [
+            [   'user_id' => 4,
                 'name' => 'Tommy Hilfiger_4',
             ],
         ]);
@@ -199,7 +202,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'brand_id' => 1,
-                'product_category_id' => 2,
+                'category_id' => 2,
+                'user_id' => 1,
                 'name' => 'Pure Pineapple',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor sit amet, consectetur adipisicing elit, sed do mod tempor',
                 'content' => '',
@@ -214,7 +218,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 2,
                 'brand_id' => 2,
-                'product_category_id' => 2,
+                'category_id' => 2,
+                'user_id' => 2,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -229,7 +234,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 3,
                 'brand_id' => 3,
-                'product_category_id' => 2,
+                'category_id' => 2,
+                'user_id' => 3,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -244,7 +250,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 4,
                 'brand_id' => 4,
-                'product_category_id' => 1,
+                'category_id' => 1,
+                'user_id' => 4,
                 'name' => 'Microfiber Wool Scarf',
                 'description' => null,
                 'content' => null,
@@ -259,7 +266,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 5,
                 'brand_id' => 1,
-                'product_category_id' => 3,
+                'category_id' => 3,
+                'user_id' => 5,
                 'name' => "Men's Painted Hat",
                 'description' => null,
                 'content' => null,
@@ -274,7 +282,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 6,
                 'brand_id' => 1,
-                'product_category_id' => 2,
+                'category_id' => 2,
+                'user_id' => 6,
                 'name' => 'Converse Shoes',
                 'description' => null,
                 'content' => null,
@@ -289,7 +298,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 7,
                 'brand_id' => 1,
-                'product_category_id' => 1,
+                'category_id' => 1,
+                'user_id' => 7,
                 'name' => 'Pure Pineapple',
                 'description' => null,
                 'content' => null,
@@ -304,7 +314,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 8,
                 'brand_id' => 1,
-                'product_category_id' => 1,
+                'category_id' => 1,
+                'user_id' => 8,
                 'name' => '2 Layer Windbreaker',
                 'description' => null,
                 'content' => null,
@@ -319,7 +330,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 9,
                 'brand_id' => 1,
-                'product_category_id' => 1,
+                'category_id' => 1,
+                'user_id' => 9,
                 'name' => 'Converse Shoes',
                 'description' => null,
                 'content' => null,

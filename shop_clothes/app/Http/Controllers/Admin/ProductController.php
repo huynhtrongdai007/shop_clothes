@@ -89,8 +89,8 @@ class ProductController extends Controller
                 foreach($product_image as $multi_img) {
 
                     $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
-                    Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
-                    $last_img = 'image/product/'.$name_gen;
+                    Image::make($multi_img)->resize(270,303)->save('images/product/'.$name_gen);
+                    $last_img = 'images/product/'.$name_gen;
 
                     ProductImages::insert([
                         'product_id'=>$product_id,
@@ -173,23 +173,6 @@ class ProductController extends Controller
             'featured'=>$request->featured,
             'updated_at'=>Carbon::now()
         ]);
-
-        if($request->hasFile('images')) {
-            
-            $product_image = $request->file('images');
-            foreach($product_image as $multi_img) {
-
-                $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
-                Image::make($multi_img)->resize(300,200)->save('image/product/'.$name_gen);
-                $last_img = 'image/product/'.$name_gen;
-
-                ProductImages::find()->update([
-                    'product_id'=>$id,
-                    'path'=>$last_img,
-                    'updated_at'=>Carbon::now()
-                ]);
-            }
-        }
 
         return Redirect()->back()->with('success','Product Updated Sucessfully');
     }

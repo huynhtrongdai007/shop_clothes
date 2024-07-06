@@ -87,11 +87,9 @@
             <div class="row">
               <div class="card">
                 <div class="card-body">
+                  <a href="{{route('index.product.image',$product->id,'/images')}}" class="btn btn-primary">Images</a>
                   <input type="file" name="images" class="form-control">
                 </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card-body"> @foreach ($product_image as $item) <img src="{{asset($item->path)}}" alt=""> @endforeach </div>
               </div>
             </div>
           </div>

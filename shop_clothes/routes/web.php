@@ -64,7 +64,12 @@ Route::get('/softdele/product/{id}',[ProductController::class,'destroy'])->name(
 Route::get('/product/restore/{id}',[ProductController::class,'restore'])->name('restore.product');
 Route::get('/product/delete/{id}',[ProductController::class,'delete'])->name('delete.product');
 Route::get('/product/show/{id}',[ProductController::class,'show'])->name('show.product');
-Route::get('/product/{id}/image',[ProductImageController::class,'index'])->name('index.product.image');
+/** module Product iamge* */
+
+Route::get('/product/{id}/images',[ProductImageController::class,'index'])->name('index.product.image');
+Route::get('/product_images/{id}',[ProductImageController::class,'destroy'])->name('destroy.product.image');
+Route::get('/product_images/edit/{id}',[ProductImageController::class,'edit'])->name('edit.product_image');
+Route::post('/product_images/update/{id}',[ProductImageController::class,'update'])->name('update.product_image');
 
 
 Route::middleware([
