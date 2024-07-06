@@ -8,10 +8,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="blog-details-inner">
+                        @foreach($blogs->take(1) as $blog)
                         <div class="blog-detail-title">
-                            <h2>The Personality Trait That Makes People Happier</h2>
-                            <p>travel <span>- May 19, 2822</span></p>
+                            <h2>{{ $blog->title }}</h2>
+                            <p>{{ $blog->category }}<span>{{date('M,d,Y', strtotime($blog -> created_at))}}</span></p>
                         </div>
+                        @endforeach
                         <div class="blog-large-pic">
                             <img src="front/img/blog/blog-detail.jpg" alt=">">
                         </div>
@@ -82,6 +84,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        @foreach($blog_comments as $comments)
                         <div class="posted-by">
                             <div class="pb-pic">
                                 <img src="front/img/blog/post-by.png" alt="">
@@ -89,10 +93,11 @@
                             <div class="pb-text">
                                 <a href="#">
                                 </a>
-                                <h5>Shane Lynch</h5>
-                                <p>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in v velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, qui amodo</p>
+                                <h5>{{$comments -> name}}</h5>
+                                <p>{{$comments -> messages}}</p>
                             </div>
                         </div>
+                        @endforeach
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
                             <form action="#" class="comment-form">

@@ -242,9 +242,8 @@
                                     <div class="p-code">Sku: 80012</div>
                                     <div class="pd-social">
                                         <a href="#"><i class="ti-facebook"></i></a>
-                                        <i href="#">
-                                            <i class="ti-twitter-alt"></i></a>
-                                            <a href="#"<i class="ti-linkedin"></i></a>
+                                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                                        <a href="#"><i class="ti-linkedin"></i></a>
                                     </div>
                                 </div>
 
@@ -265,38 +264,46 @@
                                 <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
                                     <div class="product-content">
                                         <div class="row">
+                                            @foreach($products -> take(1) as $product)
                                             <div class="col-lg-7">
                                                 <h5>Introduction</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
+                                                <p>{{$product -> description}}</p>
                                                 <h5>Features</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
+                                                <p> {{$product -> featured}}</p>
                                             </div>
                                             <div class="col-lg-5">
                                                 <img src="front/img/product-single/tab-desc.jpg" alt="" />
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="specification-table">
+                                        @foreach($product_comments -> take(1) as $product_comment)
+                                            @foreach($products as $product)
+                                                @if($product_comment->id == $product->id)
                                         <table>
                                             <tr>
                                                 <td class="p-catagory">Customer Rating</td>
                                                 <td>
                                                     <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span>(5)</span>
+                                                        @php
+                                                            $rating = $product_comment->rating;
+                                                            $full_stars = floor($rating);
+                                                        @endphp
+                                                        @for ($i = 0; $i < $full_stars; $i++)
+                                                            <i class="fa fa-star"></i>
+                                                        @endfor
+                                                        <span>({{$product_comment -> rating}})</span>
                                                     </div>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td class="p-catagory">Price</td>
                                                 <td>
                                                     <div class="p-price">
-                                                        $495.88
+                                                        ${{$product -> discount}}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -317,7 +324,7 @@
                                             <tr>
                                                 <td class="p-catagory">Weight</td>
                                                 <td>
-                                                    <div class="p-weight">1,3kg</div>
+                                                    <div class="p-weight">{{$product -> weight}}kg</div>
                                                 </td>
                                             </tr>
 
@@ -344,45 +351,37 @@
                                                 </td>
                                             </tr>
                                         </table>
-
+                                                @endif
+                                            @endforeach
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>2 Comments</h4>
                                         <div class="comment-option">
+                                            @foreach($product_comments as $product_comment)
                                             <div class="co-item">
                                                 <div class="avatar-pic">
                                                     <img src="front/img/product-single/avatar-1.png" alt="">
                                                 </div>
                                                 <div class="avatar-text">
                                                     <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
+{{--                                                        <i class="fa fa-star"></i>--}}
+{{--                                                        <i class="fa fa-star-o"></i>--}}
+                                                        @php
+                                                        $rating = $product_comment->rating;
+                                                        $full_stars = floor($rating);
+                                                        @endphp
+                                                        @for ($i = 0; $i < $full_stars; $i++)
+                                                            <i class="fa fa-star"></i>
+                                                        @endfor
                                                     </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2022</span></h5>
-                                                    <div class="at-reply">Nice</div>
+                                                    <h5>{{$product_comment -> name}} <span>{{ date('M,d,Y', strtotime($product_comment -> created_at)) }}</span></h5>
+                                                    <div class="at-reply">{{$product_comment -> messages}}</div>
                                                 </div>
                                             </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="front/img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2022</span></h5>
-                                                    <div class="at-reply">Nice</div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="personal-rating">
                                             <h6>Your Ratind</h6> <div class="rating">
@@ -413,6 +412,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
     <!-- Product Shop Section End -->
     <!-- Related Products Section Begin -->
@@ -426,10 +427,13 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($products->take(3) as $product)
+                    @foreach($product_images->take(3) as $product_image)
+                        @if($product_image->id == $product->id)
                 <div class="col-lg-4 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="front/img/products/product-1.jpg" alt="">
+                            <img src="front/img/products/{{$product_image -> path}}" alt="">
                             <div class="sale pp-sale">Sale</div>
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
@@ -441,99 +445,20 @@
                             </ul>
                         </div>
                         <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
+                            <div class="catagory-name">{{$product -> tag}}</div>
                             <a href="#">
-                                <h5>Pure Pineapple</h5>
+                                <h5>{{$product -> name}}</h5>
                             </a>
                             <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                                {{$product -> discount}}
+                                <span>{{$product -> price}}</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="front/img/products/product-2.jpg" alt="">
-                            <div class="sale pp-sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="front/img/products/product-3.jpg" alt="">
-                            <div class="sale pp-sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="front/img/products/product-4.jpg" alt="">
-                            <div class="sale pp-sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                        @endif
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </div>

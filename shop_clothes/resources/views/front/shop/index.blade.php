@@ -145,15 +145,20 @@
                         </div>
                     </div>
                     <div class="product-list">
+
                         <div class="row">
+                            @foreach($products as $product)
+                                @foreach($product_images as $product_image)
+                                    @if($product_image->id == $product->id)
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="front/img/products/product-1.jpg" alt="">
+                                        <img src="front/img/products/{{$product_image -> path}}" alt="">
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
+
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="product.html">+ Quick View</a></li>
@@ -161,153 +166,21 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
+
+                                        <div class="catagory-name">{{$product -> tag}}</div>
                                         <a href="#">
-                                            <h5>Pure Pineapple</h5>
+                                            <h5>{{$product -> name}}</h5>
                                         </a>
                                         <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
+                                            {{$product -> discount}}
+                                            <span>{{$product -> price}}</span>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-2.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-3.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-4.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-5.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-6.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                                    @endif
+                                @endforeach
+                            @endforeach
                         </div>
                     </div>
                     <div class="loading-more">
