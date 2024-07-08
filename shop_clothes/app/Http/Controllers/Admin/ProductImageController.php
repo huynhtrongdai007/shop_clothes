@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProductImages;
+use Illuminate\Support\Carbon;
+use Image;
 
 class ProductImageController extends Controller
 {
@@ -12,52 +15,12 @@ class ProductImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $product_iamges = ProductImages::where('product_id', $id)
+               ->latest()
+               ->paginate(5);
+        return view('admin.modules.product_image.index',compact('product_iamges'));
     }
 
     /**
@@ -69,7 +32,24 @@ class ProductImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('image')) {
+            
+            $product_image = $request->file('image');
+
+            $old_image = $request->old_image;
+            $name_gen = hexdec(uniqid()).'.'.$product_image->getClientOriginalExtension();
+            Image::make($product_image)->resize(270,303)->save('images/product/'.$name_gen);
+            $last_img = 'images/product/'.$name_gen;
+            unlink($old_image);
+
+            ProductImages::find($id)->update([
+                'path'=>$last_img,
+                'updated_at'=>Carbon::now()
+            ]);
+
+        }
+
+        return Redirect()->back()->with('success','Product Iamge Updated Successfull');
     }
 
     /**
@@ -80,6 +60,7 @@ class ProductImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProductImages::find($id)->delete();
+        return Redirect()->back()->with('success','Product Iamge Soft Delete Successfull');
     }
 }
