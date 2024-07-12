@@ -10,7 +10,7 @@ class Product extends Model
 {
     use SoftDeletes;
 
-    
+
     protected $fillable = [
         'brand_id',
         'category_id',
@@ -27,6 +27,10 @@ class Product extends Model
         'tag',
     ];
 
+    use HasFactory;
+    protected $table = 'products';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
     }
@@ -38,4 +42,23 @@ class Product extends Model
     public function brand() {
         return $this->hasOne(Brand::class,'id','brand_id');
     }
+    public function brands() {
+        return $this->hasMany(Brand::class,'brand_id','id');
+    }
+    public function productCategory() {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
+    public function productImages() {
+        return $this -> hasMany(ProductImages::class,'product_id','id');
+    }
+    public function productDetails() {
+        return $this -> hasMany(ProductDetail::class,'product_id','id');
+    }
+    public function productComments() {
+        return $this -> hasMany(ProductComment::class,'product_id','id');
+    }
+    public function orderDetails() {
+        return $this -> hasMany(OrderDetail::class,'product_id','id');
+    }
+
 }

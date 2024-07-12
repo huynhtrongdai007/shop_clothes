@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="front/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/themify-icons.css" type="text/css">
@@ -97,13 +99,17 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                            <button type="button" class="category-btn">All categories</button>
-                            <div class="input-group">
-                                <input type="text" placeholder="What do you need" />
-                                <button type="button"> <i class="ti-search"></i></button>
+
+                        <form action="shop">
+                            <div class="advanced-search">
+                                <button type="button" class="category-btn">All categories</button>
+                                <div class="input-group">
+                                    <input name="search" value="{{request ('search')}}" type="text" placeholder="What do you need" />
+                                    <button type="submit"> <i class="ti-search"></i></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                     </div>
 
                     <div class="col-lg-3 col-md-3 texxt-right">

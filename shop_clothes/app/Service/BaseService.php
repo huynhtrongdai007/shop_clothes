@@ -12,9 +12,9 @@ class BaseService implements ServiceInterface
         return $this->repository->all();
     }
 
-    public function get($id)
+    public function find($id)
     {
-        return $this->repository->get($id);
+        return $this->repository->find($id);
     }
 
     public function create(array $data)
@@ -31,4 +31,5 @@ class BaseService implements ServiceInterface
     {
         return $this->repository->delete($id);
     }
+
 }

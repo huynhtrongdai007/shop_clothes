@@ -87,9 +87,14 @@ Route::get('/',[\App\Http\Controllers\Front\HomeController::class,'index']);
 
 Route::prefix( 'shop') -> group(function (){
     Route::get('',[\App\Http\Controllers\Front\ShopController::class,'index']);
+    Route::get('product/{id}',[\App\Http\Controllers\Front\ShopController::class,'product']);
+    Route::post('product/{id}',[\App\Http\Controllers\Front\ShopController::class,'postComment']);
+    Route::get('category/{categoryName}',[\App\Http\Controllers\Front\ShopController::class,'category']);
+
 });
 
-Route::get('shop/product/{id}',[\App\Http\Controllers\Front\ShopController::class,'product']);
+
+
 
 
 

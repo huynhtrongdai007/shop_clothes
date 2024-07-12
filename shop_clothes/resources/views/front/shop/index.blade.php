@@ -26,23 +26,48 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
-                            @foreach($categories as $item)
-                                <li><a href="#"> {{$item-> name}}</a></li>
+                            @foreach($categories as $category)
+                                <li><a href="shop/category/{{ $category->name}}">{{ $category->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
-                            @foreach($brands as $brand)
+                            <div class="bc-item">
+                                <label for="bc-calvin">
+                                    Calvin Klein
+                                    <input type="checkbox" id="bc-calvin">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fw-brand-check">
+                            <div class="bc-item">
+                                <label for="bc-polo">
+                                    polo
+                                    <input type="checkbox" id="bc-polo">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fw-brand-check">
+                            <div class="bc-item">
+                                <label for="bc-diesel">
+                                    Diesel
+                                    <input type="checkbox" id="bc-diesel">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-tommy">
-                                        {{$brand-> name}}
+                                    Tommy
                                     <input type="checkbox" id="bc-tommy">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            @endforeach
                         </div>
                     </div>
                     <div class="filter-widget">
@@ -130,63 +155,72 @@
                     <div class="product-show-option">
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
+                                <form action="">
                                 <div class="select-option">
-                                    <select class="sorting">
-                                        <option value="">Default Sorting</option>
+                                    <select name="sort_by" onchange="this.form.submit();" class="sorting">
+                                        <option {{request('sort_by') == 'latest' ? 'selected' : ''}}value="latest">Sorting: Latest</option>
+                                        <option {{ request('sort_by') == 'oldest' ? 'selected' :''}}value="oldest">Sorting: Oldest</option>
+                                        <option {{ request('sort_by') == 'name-ascending' ? 'selected':''}}value="name-ascending">Sorting: Name A-Z</option>
+                                        <option {{ request('sort_by') == 'name-descending' ? 'selected' :'' }}value="name-descending">Sorting: Name Z-A</option>
+                                        <option {{ request('sort_by') == 'price-ascending' ? 'selected':'' }}value="price-ascending">Sorting: Price Ascending</option>
+                                        <option {{ request('sort_by') == 'price-descending' ? 'selected' :''}} value="price-descending">Sorting: Price Decrease</option>
                                     </select>
-                                    <select class="p-show">
-                                        <option value="">Show:</option>
+                                    <select name="show" onchange="this.form.submit();" class="p-show">
+                                        <option {{ request('show') == '3' ? 'selected' : ''}}value="3">Show: 3</option>
+                                        <option {{ request('show') == '9' ? 'selected' : ''}} value="9">Show: 9</option>
+                                        <option {{ request('show') == '15' ? 'selected': '' }}value="15">Show: 15</option>
                                     </select>
+
                                 </div>
+                                </form>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 81-89 of 36 Product</p>
                             </div>
                         </div>
                     </div>
                     <div class="product-list">
-
                         <div class="row">
+
                             @foreach($products as $product)
-                                @foreach($product_images as $product_image)
-                                    @if($product_image->id == $product->id)
+
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="front/img/products/{{$product_image -> path}}" alt="">
-                                        <div class="sale pp-sale">Sale</div>
+                                        <img src="front/img/products/{{$product -> productImages[0]->path}}" alt="">
+                                        @if ($product -> discount != null)
+                                            <div class="sale pp-sale">Sale</div>
+                                        @endif
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
-
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
+                                            <li class="quick-view"><a href="shop/product/{{$product -> id}}">+ Quick View</a></li>
                                             <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-
                                         <div class="catagory-name">{{$product -> tag}}</div>
-                                        <a href="#">
+                                        <a href="shop/product/{{$product -> id}}">
                                             <h5>{{$product -> name}}</h5>
                                         </a>
                                         <div class="product-price">
-                                            {{$product -> discount}}
-                                            <span>{{$product -> price}}</span>
+                                            @if($product->discount != null)
+                                                ${{ $product->discount }}
+                                                <span>${{ $product->price }}</span>
+                                            @else
+                                                ${{ $product->price }}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-                                    @endif
-                                @endforeach
+
                             @endforeach
                         </div>
                     </div>
-                    <div class="loading-more">
-                        <i class="icon_loading"></i>
-                        <a href="#">Loading More</a>
-                    </div>
+                    {{$products -> links()}}
                 </div>
             </div>
         </div>
