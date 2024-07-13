@@ -2,42 +2,47 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Repositories\ProductComment\ProductCommentRepositoryInterface;
-use App\Service\Product\ProductService;
+use App\Service\Brand\BrandServiceInterface;
 use App\Service\Product\ProductServiceInterface;
 use App\Service\ProductCategory\ProductCategoryServiceInterface;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class ShopController extends Controller
 {
     private $productService;
     private $productCommentService;
     private $productCategoryService;
+    private $brandService;
     public function __construct(    ProductServiceInterface $productService,
                                     ProductCommentRepositoryInterface $productCommentService,
-                                    ProductCategoryServiceInterface $productCategoryService)
+                                    ProductCategoryServiceInterface $productCategoryService,
+                                    BrandServiceInterface $brandService
+    )
     {
         $this->productService = $productService;
         $this -> productCommentService = $productCommentService;
         $this -> productCategoryService = $productCategoryService;
+        $this -> brandService = $brandService;
     }
 
 
     public function index(\Illuminate\Http\Request $request)
     {
 
-         $categories =$this -> productCategoryService -> all() ;
+          $categories =$this -> productCategoryService -> all() ;
           $products = $this -> productService -> getProductOnIndex($request);
-        return view('front.shop.index',compact('products','categories'));
+          $brands = $this -> brandService -> all() ;
+        return view('front.shop.index',compact('products','categories','brands'));
     }
     public function product($id)
     {
-          $product = $this -> productService -> find($id);
-          $relatedProducts = $this -> productService ->getRelatedProducts($product);
+        $brands = $this -> brandService -> all() ;
+        $categories =$this -> productCategoryService -> all() ;
+        $product = $this -> productService -> find($id);
+        $relatedProducts = $this -> productService ->getRelatedProducts($product);
 
-        return view('front.shop.product', compact('product'), compact('relatedProducts'));
+        return view('front.shop.product', compact('product','brands','categories'), compact('relatedProducts'));
     }
 
     public function postComment(\Illuminate\Http\Request $request)
@@ -52,7 +57,8 @@ class ShopController extends Controller
 
         $categories = $this -> productCategoryService-> all();
         $products = $this -> productService-> getproductsByCategory($categoryName, $request);
-        return view('front.shop.index',compact('categories','products'));
+        $brands = $this -> brandService -> all() ;
+        return view('front.shop.index',compact('categories','products','brands'));
     }
 
 }

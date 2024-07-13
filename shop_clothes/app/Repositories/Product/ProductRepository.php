@@ -40,7 +40,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $search = $request -> search ?? '';
 
         $products = $this->model->where('name','like', '%' .$search . '%');
-
+        $products = $this -> filter($products,$request);
         $products = $this -> sortAndPagination($products, $request);
 
         return $products;
@@ -50,12 +50,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
 
         $products = Category::where('name', $categoryName)->first()->products->toQuery();
-
+        $products = $this -> filter($products,$request);
         $products = $this -> sortAndPagination($products, $request);
+
         return $products;
-//        $category = Category::where('name', $categoryName)->first();
-//        if ($category) { echo "Category found: " . $category->name; }
-//        else { echo "Category not found."; }
     }
     private function sortAndPagination($products, Request $request)
     {
@@ -87,4 +85,55 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $products ->appends(['sort_by' =>$sortBy, 'show' => $perPage]);
         return $products;
     }
+
+
+    //Brand:
+    private function filter($products, Request $request)
+    {
+        #Brand
+        $brands = $request->brand ?? [];
+        $brand_ids = array_keys($brands);
+        $products = $brand_ids != null ? $products->whereIn('brand_id', $brand_ids): $products;
+
+        #Price
+
+        $priceMin = $request->price_min;
+        $priceMax = $request->price_max;
+        $priceMin = str_replace('$', '', $priceMin );
+        $priceMax = str_replace('$', '', $priceMax );
+        $products = ($priceMin != null && $priceMax != null)
+            ? $products->whereBetween ('price', [$priceMin, $priceMax])
+            : $products;
+
+
+        //Color:
+        $color = $request->color;
+        $products = $color != null
+            ? $products->whereHas ('productDetails', function ($query) use ($color) {
+                return $query->where('color', $color)
+                ->where('qty', '>', 0);
+            })
+            : $products;
+
+        //Size:
+        $size = $request->size;
+        $products = $size != null
+            ? $products->whereHas ('productDetails', function ($query) use ($size) {
+                return $query->where('size', $size)
+                    ->where('qty', '>', 0);
+            })
+            : $products;
+
+        //Tag:
+            $tag = $request->tag;
+            $products = $tag != null?
+                $products->where('tag', $tag):
+                $products;
+
+
+        return $products;
+    }
+
+
+
 }

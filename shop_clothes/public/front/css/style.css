@@ -1912,6 +1912,7 @@ ol {
 	margin-right: 5px;
 }
 
+
 .filter-widget .fw-size-choose .sc-item:last-child {
 	margin-right: 0;
 }
@@ -1937,6 +1938,40 @@ ol {
 .filter-widget .fw-size-choose .sc-item label.active {
 	background: #252525;
 	color: #ffffff;
+}
+
+
+.filter-widget .fw-tag-choose .sc-items {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.filter-widget .fw-tag-choose .sc-items:last-child {
+    margin-right: 0;
+}
+
+.filter-widget .fw-tag-choose .sc-items input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.filter-widget .fw-tag-choose .sc-items label {
+    font-size: 16px;
+    color: #252525;
+    font-weight: 700;
+    height: 40px;
+    width: 110px;
+    border: 1px solid #ebebeb;
+    text-align: center;
+    line-height: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.filter-widget .fw-tag-choose .sc-items label.active {
+    background: #252525;
+    color: #ffffff;
 }
 
 .filter-widget .fw-tags a {
