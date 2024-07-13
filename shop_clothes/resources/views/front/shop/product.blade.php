@@ -287,7 +287,9 @@
             </div>
             <div class="row">
                 @foreach($relatedProducts as $product )
+                <div class="col-lg-3 col-sm-6">
                     @include('front.component.product-item')
+                </div>
                 @endforeach
             </div>
         </div>

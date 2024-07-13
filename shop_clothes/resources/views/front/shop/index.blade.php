@@ -58,7 +58,9 @@
 
                             @foreach($products as $product)
 
+                            <div class="col-lg-4 col-sm-6">
                                 @include('front.component.product-item')
+                            </div>
 
                             @endforeach
                         </div>
