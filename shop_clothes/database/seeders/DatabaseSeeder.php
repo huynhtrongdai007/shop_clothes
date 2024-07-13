@@ -188,14 +188,18 @@ class DatabaseSeeder extends Seeder
 
         DB::table('categories')->insert([
             [
+                'user_id' => 1,
                 'name' => 'Men',
             ],
             [
+                'user_id' => 2,
                 'name' => 'Women',
             ],
             [
+                'user_id' => 3,
                 'name' => 'Kids',
             ],
+
         ]);
 
         DB::table('products')->insert([
