@@ -97,7 +97,7 @@ Route::prefix('cart')->group(function() {
     Route::get('add',[\App\Http\Controllers\Front\CartController::class, 'add']);
     Route::get('/',[\App\Http\Controllers\Front\CartController::class, 'index']);
     Route::get('delete',[\App\Http\Controllers\Front\CartController::class, 'delete']);
-
+    Route::get('destroy',[\App\Http\Controllers\Front\CartController::class, 'destroy']);
 });
 
 

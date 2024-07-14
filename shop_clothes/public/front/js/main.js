@@ -325,3 +325,33 @@ function removeCart(rowId){
         }
     });
 }
+
+
+function destroyCart(){
+    $.ajax({
+        type:"GET",
+        url:"cart/destroy",
+        data:{},
+        success:function(response) {
+            // xử lý phần cart hover (trang master-page)
+            $('.cart-count').text('0');
+            $('.cart-price').text('0');
+            $('.cart-total h5').text('0');
+         
+
+            var cartHover_tbody = $('.select-items tbody');
+            cartHover_tbody.children().remove();
+            
+            // xử lý trong trang "shop/cart"
+            var cart_tbody = $('.cart-table tbody');
+            cart_tbody.children().remove();
+            $('.subtotal span').text('0');
+            $('.cart-total span').text('0');
+            console.log(response);
+        },
+        error:function(response){
+            alert('Delete failed:');
+            console.log(response);
+        }
+    });
+}
