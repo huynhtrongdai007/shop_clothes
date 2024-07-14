@@ -252,3 +252,76 @@
 	});
 
 })(jQuery);
+
+
+function addCart(productId){
+    $.ajax({
+        type:"GET",
+        url:"cart/add",
+        data:{productId:productId},
+        success:function(response) {
+            $('.cart-count').text(response['count']);
+            console.log( response['total']);
+            $('.cart-price').text('$' + response['total']);
+            $('.select-total h5').text('$' + response['total']);
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + response['cart'].rowId +"']");
+            if(cartHover_existItem.length){
+                cartHover_existItem.find('.product-selected p').text('$' + response['cart'].price.toFixed(2) + 'x' + response['cart'].qty);
+            }else{
+                var newItem = ` <tr data-rowId="${response['cart'].rowId}">
+                                                    <td class="si-pic">
+                                                    <img style="height: 70px;"
+                                                     src="front/img/products/${response['cart'].options.images[0].path}" alt=""/></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>$ ${response['cart'].price.toFixed(2)} x ${response['cart'].qty}</p>
+                                                            <h6>${response['cart'].name}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i onclick="removeCart('${response['cart'].rowId}')"  class="ti-close"></i>
+                                                    </td>
+                                                </tr>`;
+                cartHover_tbody.append(newItem);
+            }
+        },
+        error:function(response){
+            alert('Add failed:');
+            console.log(response);
+        }
+    });
+}
+
+function removeCart(rowId){
+    $.ajax({
+        type:"GET",
+        url:"cart/delete",
+        data:{rowId : rowId},
+        success:function(response) {
+            // xử lý phần cart hover (trang master-page)
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.cart-total h5').text('$' + response['total']);
+            $('.subtotal span').text('$' + response['total'])
+            $('.cart-total span').text('$' + response['subtotal'])
+
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+            cartHover_existItem.remove();
+            
+            // xử lý trong trang "shop/cart"
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existItem = cart_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+
+            cart_existItem.remove();
+            console.log(response);
+        },
+        error:function(response){
+            alert('Delete failed:');
+            console.log(response);
+        }
+    });
+}
