@@ -94,7 +94,7 @@ Route::prefix( 'shop') -> group(function (){
 });
 
 Route::prefix('cart')->group(function() {
-    Route::get('add/{id}',[\App\Http\Controllers\Front\CartController::class, 'add']);
+    Route::get('add',[\App\Http\Controllers\Front\CartController::class, 'add']);
     Route::get('/',[\App\Http\Controllers\Front\CartController::class, 'index']);
 
 });
