@@ -37,7 +37,7 @@
                                 <td class="qua-col first-row">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="{{$cart->qty}}">
+                                            <input type="text" value="{{$cart->qty}}" data-rowId="{{$cart->rowId}}">
                                         </div>
                                     </div>
                                 </td>

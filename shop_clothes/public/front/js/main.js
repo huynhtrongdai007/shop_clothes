@@ -249,6 +249,10 @@
 			}
 		}
 		$button.parent().find('input').val(newVal);
+
+        //Update cart;
+        var rowId = $button.parent().find('input').data('rowid');
+        updateCart(rowId, newVal);
 	});
 
 })(jQuery);
@@ -309,12 +313,12 @@ function removeCart(rowId){
 
 
             var cartHover_tbody = $('.select-items tbody');
-            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowid='" + rowId +"']");
             cartHover_existItem.remove();
             
             // xử lý trong trang "shop/cart"
             var cart_tbody = $('.cart-table tbody');
-            var cart_existItem = cart_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+            var cart_existItem = cart_tbody.find("tr" + "[data-rowid='" + rowId +"']");
 
             cart_existItem.remove();
             console.log(response);
@@ -351,6 +355,44 @@ function destroyCart(){
         },
         error:function(response){
             alert('Delete failed:');
+            console.log(response);
+        }
+    });
+}
+
+function updateCart(rowId,qty){
+    $.ajax({
+        type:"GET",
+        url:"cart/update",
+        data:{rowId:rowId,qty:qty},
+        success:function(response) {
+            // xử lý phần cart hover (trang master-page)
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.cart-total h5').text('$' + response['total']);
+         
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+            if(qty===0){
+                cartHover_existItem.remove();
+            }else{
+                cartHover_existItem.find('.product-selected p').text('$' + response['cart'].price.toFixed(2) + 'x' + response['cart'].qty);
+            }
+            // xử lý trong trang "shop/cart"
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existItem = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+            if(qty===0){
+                cart_existItem.remove();
+            }else{
+                cart_existItem.find('.total-price').text('$' + (response['cart'].price * response['cart'].qty).toFixed(2));
+            }
+
+            $('.subtotal span').text('$' + response['subtotal']);
+            $('.cart-total span').text('$' + response['total']);
+            console.log(response);
+        },
+        error:function(response){
+            alert('Update failed:');
             console.log(response);
         }
     });
