@@ -199,7 +199,6 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 3,
                 'name' => 'Kids',
             ],
-
         ]);
 
         DB::table('products')->insert([
@@ -209,7 +208,7 @@ class DatabaseSeeder extends Seeder
                 'category_id' => 2,
                 'user_id' => 1,
                 'name' => 'Pure Pineapple',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor sit amet, consectetur adipisicing elit, sed do mod tempor',
+                'description' => '<div class="row"> <div class="col-lg-7"> <h5>Introduction</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> <h5>Features</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> </div> <div class="col-lg-5"> <img src="front/img/product-single/tab-desc.jpg" alt=""> </div> </div> ',
                 'content' => '',
                 'price' => 629.99,
                 'qty' => 20,
@@ -265,7 +264,7 @@ class DatabaseSeeder extends Seeder
                 'weight' => null,
                 'sku' => null,
                 'featured' => true,
-                'tag' => 'Accessories',
+                'tag' => 'Trousers',
             ],
             [
                 'id' => 5,
@@ -281,7 +280,7 @@ class DatabaseSeeder extends Seeder
                 'weight' => null,
                 'sku' => null,
                 'featured' => false,
-                'tag' => 'Accessories',
+                'tag' => 'Hat',
             ],
             [
                 'id' => 6,
@@ -299,68 +298,60 @@ class DatabaseSeeder extends Seeder
                 'featured' => true,
                 'tag' => 'Clothing',
             ],
-            [
-                'id' => 7,
-                'brand_id' => 1,
-                'category_id' => 1,
-                'user_id' => 7,
-                'name' => 'Pure Pineapple',
-                'description' => null,
-                'content' => null,
-                'price' => 64,
-                'qty' => 20,
-                'discount' => 35,
-                'weight' => null,
-                'sku' => null,
-                'featured' => true,
-                'tag' => 'HandBag',
-            ],
-            [
-                'id' => 8,
-                'brand_id' => 1,
-                'category_id' => 1,
-                'user_id' => 8,
-                'name' => '2 Layer Windbreaker',
-                'description' => null,
-                'content' => null,
-                'price' => 44,
-                'qty' => 20,
-                'discount' => 35,
-                'weight' => null,
-                'sku' => null,
-                'featured' => true,
-                'tag' => 'Clothing',
-            ],
-            [
-                'id' => 9,
-                'brand_id' => 1,
-                'category_id' => 1,
-                'user_id' => 9,
-                'name' => 'Converse Shoes',
-                'description' => null,
-                'content' => null,
-                'price' => 35,
-                'qty' => 20,
-                'discount' => 34,
-                'weight' => null,
-                'sku' => null,
-                'featured' => true,
-                'tag' => 'Shoes',
-            ],
+//            [
+//                'id' => 7,
+//                'brand_id' => 1,
+//                'category_id' => 1,
+//                'user_id' => 7,
+//                'name' => 'Pure Pineapple',
+//                'description' => null,
+//                'content' => null,
+//                'price' => 64,
+//                'qty' => 20,
+//                'discount' => 35,
+//                'weight' => null,
+//                'sku' => null,
+//                'featured' => true,
+//                'tag' => 'HandBag',
+//            ],
+//            [
+//                'id' => 8,
+//                'brand_id' => 1,
+//                'category_id' => 1,
+//                'user_id' => 8,
+//                'name' => '2 Layer Windbreaker',
+//                'description' => null,
+//                'content' => null,
+//                'price' => 44,
+//                'qty' => 20,
+//                'discount' => 35,
+//                'weight' => null,
+//                'sku' => null,
+//                'featured' => true,
+//                'tag' => 'Clothing',
+//            ],
+//            [
+//                'id' => 9,
+//                'brand_id' => 1,
+//                'category_id' => 1,
+//                'user_id' => 9,
+//                'name' => 'Converse Shoes',
+//                'description' => null,
+//                'content' => null,
+//                'price' => 35,
+//                'qty' => 20,
+//                'discount' => 34,
+//                'weight' => null,
+//                'sku' => null,
+//                'featured' => true,
+//                'tag' => 'Shoes',
+//            ],
         ]);
 
         DB::table('product_images')->insert([
             [
                 'product_id' => 1,
                 'path' => 'product-1.jpg',
-            ],
-            [
-                'product_id' => 1,
-                'path' => 'product-1-1.jpg',
-            ],
-            [
-                'product_id' => 1,
-                'path' => 'product-1-2.jpg',
             ],
             [
                 'product_id' => 2,
@@ -382,18 +373,6 @@ class DatabaseSeeder extends Seeder
                 'product_id' => 6,
                 'path' => 'product-6.jpg',
             ],
-            [
-                'product_id' => 7,
-                'path' => 'product-7.jpg',
-            ],
-            [
-                'product_id' => 8,
-                'path' => 'product-8.jpg',
-            ],
-            [
-                'product_id' => 9,
-                'path' => 'product-9.jpg',
-            ],
         ]);
 
         DB::table('product_details')->insert([
@@ -404,34 +383,34 @@ class DatabaseSeeder extends Seeder
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 2,
                 'color' => 'blue',
                 'size' => 'M',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 3,
                 'color' => 'blue',
                 'size' => 'L',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 4,
                 'color' => 'blue',
                 'size' => 'XS',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 5,
                 'color' => 'yellow',
                 'size' => 'S',
-                'qty' => 0,
+                'qty' => 2,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 6,
                 'color' => 'violet',
                 'size' => 'S',
-                'qty' => 0,
+                'qty' => 2,
             ],
         ]);
 
@@ -455,3 +434,4 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+
