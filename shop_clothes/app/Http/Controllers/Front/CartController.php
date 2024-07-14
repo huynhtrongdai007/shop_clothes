@@ -29,7 +29,14 @@ class CartController extends Controller
             ],
 
         ]);
-        dd(Cart::content());
         return back();
+    }
+
+    public function index() {
+        $carts = Cart::content();
+        $total = Cart::total();
+        $subtotal = Cart::subtotal();
+
+        return view('front.shop.cart', compact('carts', 'total','subtotal'));
     }
 }
