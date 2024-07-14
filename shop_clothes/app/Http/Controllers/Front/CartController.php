@@ -18,7 +18,6 @@ class CartController extends Controller
     public function add(Request $request) {
         if($request->ajax()){
             $product = $this->productionService->find($request->productId);
-
             $response['cart'] = Cart::add([
                 'id'=>$product->id,
                 'name'=>$product->name,
@@ -46,5 +45,19 @@ class CartController extends Controller
         $subtotal = Cart::subtotal();
 
         return view('front.shop.cart', compact('carts', 'total','subtotal'));
+    }
+
+    public function delete(Request $request) {
+        if($request->ajax()){
+            $id = $request->rowId;
+            $response['cart'] = Cart::remove($id);
+            $response['count'] = Cart::count();
+            $response['total'] = Cart::total();
+            $response['subtotal'] = Cart::subtotal();
+            return $response;
+
+        }
+        return back();
+
     }
 }

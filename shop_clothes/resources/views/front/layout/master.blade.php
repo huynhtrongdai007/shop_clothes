@@ -140,7 +140,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
-                                                        <i class="ti-close"></i>
+                                                        <i onclick="removeCart('{{$cart->rowId}}')" class="ti-close"></i>
                                                     </td>
                                                 </tr>
                                                 @endforeach

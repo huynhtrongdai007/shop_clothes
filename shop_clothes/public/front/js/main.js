@@ -261,8 +261,9 @@ function addCart(productId){
         data:{productId:productId},
         success:function(response) {
             $('.cart-count').text(response['count']);
+            console.log( response['total']);
             $('.cart-price').text('$' + response['total']);
-            $('.cart-total h5').text('$' + response['total']);
+            $('.select-total h5').text('$' + response['total']);
 
             var cartHover_tbody = $('.select-items tbody');
             var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + response['cart'].rowId +"']");
@@ -280,16 +281,46 @@ function addCart(productId){
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
-                                                        <i class="ti-close"></i>
+                                                        <i onclick="removeCart('${response['cart'].rowId}')"  class="ti-close"></i>
                                                     </td>
                                                 </tr>`;
                 cartHover_tbody.append(newItem);
             }
-            alert('Add success:\nProduct:' + response['cart'].name);
-            console.log(response);
         },
         error:function(response){
             alert('Add failed:');
+            console.log(response);
+        }
+    });
+}
+
+function removeCart(rowId){
+    $.ajax({
+        type:"GET",
+        url:"cart/delete",
+        data:{rowId : rowId},
+        success:function(response) {
+            // xử lý phần cart hover (trang master-page)
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.cart-total h5').text('$' + response['total']);
+            $('.subtotal span').text('$' + response['total'])
+            $('.cart-total span').text('$' + response['subtotal'])
+
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+            cartHover_existItem.remove();
+            
+            // xử lý trong trang "shop/cart"
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existItem = cart_tbody.find("tr" + "[data-rowId='" + rowId +"']");
+
+            cart_existItem.remove();
+            console.log(response);
+        },
+        error:function(response){
+            alert('Delete failed:');
             console.log(response);
         }
     });

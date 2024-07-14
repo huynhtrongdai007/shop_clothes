@@ -11,9 +11,10 @@
                     <table>
                         <tbody>
                             @foreach ($carts as $cart)
-                                
-                            <tr>
-                                <td class="cart-pic first-row"><img style="height:170px;" src="front/img/products/{{$cart->options->images[0]->path}}" alt=""></td>
+                         
+                            <tr data-rowId="{{$cart->rowId}}">
+                                <td class="cart-pic first-row"><img 
+                                    style="height:170px;" src="front/img/products/{{$cart->options->images[0]->path}}" alt=""></td>
                                 <td class="cart-title first-row">
                                     <h5>{{$cart->name}}</h5>
                                 </td>
@@ -26,7 +27,9 @@
                                     </div>
                                 </td>
                                 <td class="total-price first-row">${{number_format($cart->price * $cart->qty, 2)}}</td>
-                                <td class="close-td first-row"><i class="ti-close"></i></td>
+                                <td class="close-td first-row">
+                                    <i onclick="removeCart('{{$cart->rowId}}')" class="ti-close"></i>
+                                </td>
                             </tr>
                             @endforeach
 
