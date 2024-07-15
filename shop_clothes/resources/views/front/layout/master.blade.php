@@ -68,9 +68,6 @@
                         <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
 
-
-
-
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width: 300px;">
                             <option value="yt" data-image="front/img/flag-1.jpg" data-imagecss=" flag yt" data-title="English">English</option>
@@ -130,7 +127,7 @@
                                         <table>
                                             <tbody>
                                                 @foreach (Cart::content() as $cart)
-                                                    
+
                                                 <tr data-rowId="{{$cart->rowId}}">
                                                     <td class="si-pic"><img style="height: 70px;" src="front/img/products/{{$cart->options->images[0]->path}}" /></td>
                                                     <td class="si-text">
