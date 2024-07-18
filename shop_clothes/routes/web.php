@@ -101,9 +101,11 @@ Route::prefix('cart')->group(function() {
     Route::get('update',[\App\Http\Controllers\Front\CartController::class, 'update']);
 });
 
+Route::prefix('checkout')->group(function() {
+    Route::get('',[\App\Http\Controllers\Front\CheckOutController::class, 'index']);
+    Route::post('/',[\App\Http\Controllers\Front\CheckOutController::class, 'addOrder']);
 
-
-
+});
 
 Route::prefix( 'acc') -> group(function (){
     Route::get('login',[AccountController::class,'login']);
