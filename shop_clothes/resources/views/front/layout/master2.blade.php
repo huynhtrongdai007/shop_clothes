@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -79,7 +80,6 @@
                         <a href="#"><i class="ti-pinterest"></i></a>
                     </div>
                 </div>
-
             </div>
         </div>
 

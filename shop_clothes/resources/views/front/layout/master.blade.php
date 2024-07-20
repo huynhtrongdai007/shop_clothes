@@ -81,7 +81,6 @@
                         <a href="#"><i class="ti-pinterest"></i></a>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -129,7 +128,8 @@
                                                 @foreach (Cart::content() as $cart)
 
                                                 <tr data-rowId="{{$cart->rowId}}">
-                                                    <td class="si-pic"><img style="height: 70px;" src="front/img/products/{{$cart->options->images[0]->path}}" /></td>
+                                                    <td class="si-pic"><img style="height: 70px;" src="front/img/products/{{$cart->options->images[0]->path}}" />
+                                                    </td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>{{$cart->price}} x {{$cart->qty}}</p>
@@ -216,8 +216,7 @@
 
     <!-- Body -->
     @yield('body')
-
-
+    
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">
         <div class="container">
