@@ -48,6 +48,11 @@ class CheckOutController extends Controller
         Cart::destroy();
         
         //04. Trả về kết quả thông báo
-        return "Success!";
+         return redirect('checkout/result')->with('notification','Success! you will pay delivery. Please check your email');
+    }
+
+    public function result(){
+        $notification = session('notification');
+        return view('front.checkout.result', compact('notification'));
     }
 }
