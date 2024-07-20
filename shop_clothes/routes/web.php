@@ -110,7 +110,7 @@ Route::prefix('checkout')->group(function() {
 Route::prefix( 'acc') -> group(function (){
     Route::get('login',[AccountController::class,'login']);
     Route::get('register',[AccountController::class,'register']);
-    Route::post('login',[AccountController::class,'CustomerLogin']);
+    Route::post('login',[AccountController::class,'checkLogin']);
     Route::post('register',[AccountController::class,'postRegister']);
     Route::get('logout',[AccountController::class,'logout']);
 });

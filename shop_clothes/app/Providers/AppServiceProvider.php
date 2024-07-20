@@ -6,8 +6,6 @@ use App\Repositories\Blog\BlogRepository;
 use App\Repositories\Blog\BlogRepositoryInterface;
 use App\Repositories\Brand\BrandRepository;
 use App\Repositories\Brand\BrandRepositoryInterface;
-use App\Repositories\Customer\CustomerRepository;
-use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\ProductCategory\ProductCategoryRepository;
@@ -18,12 +16,12 @@ use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Order\OrderRepository;
 use App\Repositories\OrderDetail\OrderDetailRepositoryInterface;
 use App\Repositories\OrderDetail\OrderDetailRepository;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use App\Service\Blog\BlogService;
 use App\Service\Blog\BlogServiceInterface;
 use App\Service\Brand\BrandService;
 use App\Service\Brand\BrandServiceInterface;
-use App\Service\Customer\CustomerService;
-use App\Service\Customer\CustomerServiceInterface;
 use App\Service\Product\ProductService;
 use App\Service\Product\ProductServiceInterface;
 use App\Service\ProductCategory\ProductCategoryService;
@@ -35,6 +33,8 @@ use App\Service\Order\OrderService;
 use App\Service\OrderDetail\OrderDetailServiceInterface;
 use App\Service\OrderDetail\OrderDetailService;
 
+use App\Service\User\UserService;
+use App\Service\User\UserServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -49,12 +49,12 @@ class AppServiceProvider extends ServiceProvider
 
         //Customer
         $this->app->singleton(
-            CustomerRepositoryInterface::class,
-            CustomerRepository::class
+            UserRepositoryInterface::class,
+            UserRepository::class
         );
         $this->app->singleton(
-            CustomerServiceInterface::class,
-            CustomerService::class
+            UserServiceInterface::class,
+            UserService::class
         );
         //Blog
         $this->app->singleton(
