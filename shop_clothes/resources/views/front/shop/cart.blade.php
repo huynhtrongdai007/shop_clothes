@@ -6,9 +6,24 @@
 <section class="shoping-cart spad">
     <div class="container">
         <div class="row">
+            @if (Cart::count() > 0)
             <div class="col-lg-12">
                 <div class="cart-table">
                     <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th class="p-name">Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>
+                                    <i onclick="confirm('Are you sure to delete all carts?') === true ? destroyCart() : ''" 
+                                   style="cursor:pointer" class="ti-close"></i>
+                                </th>
+
+                            </tr>
+                        </thead>
                         <tbody>
                             @foreach ($carts as $cart)
                          
@@ -22,7 +37,7 @@
                                 <td class="qua-col first-row">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="{{$cart->qty}}">
+                                            <input type="text" value="{{$cart->qty}}" data-rowId="{{$cart->rowId}}">
                                         </div>
                                     </div>
                                 </td>
@@ -36,29 +51,36 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a href="" class="primary-btn continute-shop">Continue shopping</a>
+                            <a href="" class="primary-btn up-cart">Update cart</a>
+                        </div>
+                        <div class="discount-coupon">
+                            <h6>Discount Codes</h6>
+                            <form action="#" class="coupon-form"></form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="proceed-checkout">
+                            <ul>
+                                <li class="subtotal">Subtotal <span>${{$total}}</span></li>
+                                <li class="cart-total">Total <span>${{$subtotal}}</span></li>
+                            </ul>
+                            <a href="./checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            @else
+                <div class="col-lg-12">
+                    <h4>Your cart is empty.</h4>
+                </div>
+            @endif
+            
         </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="cart-buttons">
-                    <a href="" class="primary-btn continute-shop">Continue shopping</a>
-                    <a href="" class="primary-btn up-cart">Update cart</a>
-                </div>
-                <div class="discount-coupon">
-                    <h6>Discount Codes</h6>
-                    <form action="#" class="coupon-form"></form>
-                </div>
-            </div>
-            <div class="col-lg-4 offset-lg-4">
-                <div class="proceed-checkout">
-                    <ul>
-                        <li class="subtotal">Subtotal <span>${{$total}}</span></li>
-                        <li class="cart-total">Total <span>${{$subtotal}}</span></li>
-                    </ul>
-                    <a href="" class="proceed-btn">PROCEED TO CHECK OUT</a>
-                </div>
-            </div>
-        </div>
+       
     </div>
 </section>
 @endsection

@@ -55,9 +55,27 @@ class CartController extends Controller
             $response['total'] = Cart::total();
             $response['subtotal'] = Cart::subtotal();
             return $response;
-
         }
+
         return back();
 
+    }
+
+    public function destroy(){
+        Cart::destroy();
+    }
+
+    public function update(Request $request){
+        if($request->ajax()){
+            $id = $request->rowId;
+            $qty = $request->qty;
+            $response['cart'] = Cart::update($id,$qty);
+            $response['count'] = Cart::count();
+            $response['total'] = Cart::total();
+            $response['subtotal'] = Cart::subtotal();
+            return $response;
+        }
+
+        return back();
     }
 }
