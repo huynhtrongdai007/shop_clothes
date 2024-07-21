@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Shane Lynch',
                 'email' => 'ShaneLynch@gmail.com',
                 'password' => Hash::make('123456'),
-                'avatar' => 'avatar-0.png',
+                'avatar' => null,
                 'level' => 1,
                 'description' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
             ],

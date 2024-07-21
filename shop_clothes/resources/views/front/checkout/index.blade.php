@@ -16,6 +16,9 @@
                         </div>
                         <h4>Biiling Details</h4>
                         <div class="row">
+
+                            <input type="hidden" id="user_id" name="user_id" value="{{Auth::user() -> id ??''}}">
+
                             <div class="col-lg-12">
                                 <label for="fir">Full Name <span>*</span></label>
                                 <input type="text" id="fir" name="first_name" value="{{Auth::user() -> name ??''}}">

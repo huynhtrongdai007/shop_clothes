@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Service\Order\OrderServiceInterface;
 use App\Service\OrderDetail\OrderDetailServiceInterface;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use app\Utilities\Constant;
+
 
 class CheckOutController extends Controller
 {
@@ -15,7 +17,7 @@ class CheckOutController extends Controller
 
     public function __construct(OrderServiceInterface $orderService,
         OrderDetailServiceInterface $orderDetailService ){
-        
+
             $this->orderService = $orderService;
             $this->orderDetailService = $orderDetailService;
     }
@@ -29,7 +31,9 @@ class CheckOutController extends Controller
 
     public function addOrder(Request $request) {
         //01. Thêm đơn hàng
-        $order = $this->orderService->create($request->all());
+        $data = $request -> all();
+        $data ['status']  = Constant::order_status_ReceiveOrders;
+        $order = $this->orderService->create($data);
 
         //02. Thêm chi tiết đơn hàng
         $carts = Cart::content();
@@ -46,7 +50,7 @@ class CheckOutController extends Controller
 
         //03.Xóa giỏ hàng
         Cart::destroy();
-        
+
         //04. Trả về kết quả thông báo
         return "Success!";
     }
