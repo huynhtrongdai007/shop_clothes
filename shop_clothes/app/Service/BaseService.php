@@ -24,7 +24,7 @@ class BaseService implements ServiceInterface
 
     public function update(array $data, $id)
     {
-        return $this->repository->update($id, $data);
+        return $this->repository->update($data, $id);
     }
 
     public function delete($id)

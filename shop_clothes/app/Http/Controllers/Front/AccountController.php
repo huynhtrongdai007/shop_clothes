@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 
 use App\Models\User;
+use app\Utilities\Constant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\User\UserServiceInterface;
@@ -36,12 +37,12 @@ class AccountController extends Controller
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
-            'level' => 2, //Tài khoản cấp độ khách hàng bình thường.
+            'level' => Constant::user_level_client, //Tài khoản cấp độ khách hàng bình thường.
         ];
         $remember = $request->remember;
 
         if (Auth::attempt($credentials, $remember)) {
-            return redirect('');
+            return redirect() -> intended('');
         } else {
             return back()->
             with('notification','ERROR: Email or Password invalid');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Front\AccountController;
 
 
@@ -130,6 +131,15 @@ Route::prefix( 'page') -> group(function (){
 
 
 //Admin
-Route::prefix( 'admin') -> group(function (){
+Route::prefix( 'admin')-> middleware('CheckAdminLogin') -> group(function (){
+    Route::redirect('', 'admin/user');
+
     Route::resource('user', UserController::class);
+
+    Route::prefix('login') -> group(function (){
+       Route::get('',[HomeController::class,'getLogin'])->withoutMiddleware('CheckAdminLogin');
+       Route::post('',[HomeController::class,'postLogin'])->withoutMiddleware('CheckAdminLogin');
+    });
+
+    Route::get('logout',[HomeController::class,'logout']);
 });

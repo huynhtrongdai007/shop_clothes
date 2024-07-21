@@ -81,11 +81,11 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.user.edit',compact('user'));
     }
 
     /**
@@ -93,21 +93,57 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
-        //
-    }
 
+        $data = $request->all();
+    //Xử Lý mật khẩu
+
+    if ($request->get( 'password') != null) {
+        if ($request->get(  'password') != $request->get(  'password_confirmation')) {
+            return back()
+                ->with('notification', 'ERROR: Confirm password does not match');
+        }
+
+        $data['password']= bcrypt($request->get(  'password'));
+        }
+        else {
+        unset($data['password']);
+        }
+
+        //Xu ly anh
+        if ($request->hasFile(  'image')) {
+            //Thêm file mới:
+            $data['avatar'] = Common::uploadFile($request->file('image'), 'front/img/product-single');
+            //Xóa file cũ:
+            $file_name_old = $request->get('image_old');
+            if ($file_name_old != '') {
+
+                unlink('front/img/product-single/' . $file_name_old);
+            }
+        }
+        //Cap nhat du lieu
+        $this -> useService -> update( $data, $user -> id);
+        return redirect('admin/user/'. $user -> id);
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(User $user)
     {
-        //
+
+        $this->useService->delete($user->id);
+        //Xóa file:
+        $file_name = $user->avatar;
+        if ($file_name = '') {
+
+        unlink( 'front/img/product-single/' . $file_name);
+        }
+        return redirect( 'admin/user');
     }
 }
