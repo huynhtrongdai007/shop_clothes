@@ -51,22 +51,30 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    @php
-                    $customer = Session::get('customer');
-                    @endphp
 
-                    @if ($customer)
+{{--                    @if(Auth::check())--}}
+{{--                        <a href="./acc/login" class="login-panel">--}}
+{{--                            <i class="fa fa-user"></i>--}}
+{{--                            {{ Auth::user()->name }} <button>Logout</button>--}}
+{{--                        </a>--}}
+{{--                    @else--}}
+
+{{--                        <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>--}}
+{{--                    @endif--}}
+
+
+
+                    @if (Auth::check())
                         <span class="login-panel"> <i class="fa fa-user"></i>
-                        @php
-                           echo(Session::get('customer_name'));
-                        @endphp
-                        <a href="./acc/logout" >
-                             <button>Logout</button>
+                        {{ Auth::user()->name }}
+                         <a href="./acc/logout" >
+                        <button>Logout</button>
                         </a>
                         </span>
                     @else
                         <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
+
 
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width: 300px;">
@@ -81,7 +89,6 @@
                         <a href="#"><i class="ti-pinterest"></i></a>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -129,7 +136,8 @@
                                                 @foreach (Cart::content() as $cart)
 
                                                 <tr data-rowId="{{$cart->rowId}}">
-                                                    <td class="si-pic"><img style="height: 70px;" src="front/img/products/{{$cart->options->images[0]->path}}" /></td>
+                                                    <td class="si-pic"><img style="height: 70px;" src="front/img/products/{{$cart->options->images[0]->path}}" />
+                                                    </td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>{{$cart->price}} x {{$cart->qty}}</p>
@@ -216,7 +224,6 @@
 
     <!-- Body -->
     @yield('body')
-
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">

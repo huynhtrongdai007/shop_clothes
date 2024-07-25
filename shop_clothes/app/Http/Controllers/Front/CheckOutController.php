@@ -8,6 +8,8 @@ use App\Service\Order\OrderServiceInterface;
 use App\Service\OrderDetail\OrderDetailServiceInterface;
 use App\Utilities\VNPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use app\Utilities\Constant;
+
 
 
 class CheckOutController extends Controller
@@ -17,7 +19,7 @@ class CheckOutController extends Controller
 
     public function __construct(OrderServiceInterface $orderService,
         OrderDetailServiceInterface $orderDetailService ){
-        
+
             $this->orderService = $orderService;
             $this->orderDetailService = $orderDetailService;
     }
@@ -31,7 +33,9 @@ class CheckOutController extends Controller
 
     public function addOrder(Request $request) {
         //01. Thêm đơn hàng
-        $order = $this->orderService->create($request->all());
+        $data = $request -> all();
+        $data ['status']  = Constant::order_status_ReceiveOrders;
+        $order = $this->orderService->create($data);
 
         //02. Thêm chi tiết đơn hàng
         $carts = Cart::content();
@@ -70,7 +74,6 @@ class CheckOutController extends Controller
     }
 
     public function vnPayCheck(Request $request) {
-        dd('ok');
         //01. Lấy data từ URL (do VNPay gửi về qua $vnp_ResponseCode) 
         $vnp_ResponseCode = $request->get('vnp_ResponseCode'); // Mã phản hồi kết quả thanh toán. 00= Thành công
         $vnp_TxnRef = $request->get('vnp_TxnRef'); // order_id

@@ -6,7 +6,6 @@ namespace App\Utilities;
 
 class VNPay
 {
-    dd("as");
     /**
      * Cấu hình
      *
