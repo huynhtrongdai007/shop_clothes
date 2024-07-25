@@ -45,4 +45,14 @@ abstract class BaseRepository implements RepositoryInterface
         $object = $this->model-> find($id);
         return $object->delete($id);
     }
+
+
+    public function searchAndPaginate($searchBy, $keyword, $perPage = 5)
+    {
+        return $this->model
+            ->where($searchBy, 'like', '%' . $keyword . '%')
+            ->orderBy('id', 'desc')
+            ->paginate($perPage)
+            ->appends(['search' => $keyword]);
+    }
 }

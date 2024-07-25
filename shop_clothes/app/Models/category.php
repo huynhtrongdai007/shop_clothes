@@ -14,7 +14,7 @@ class Category extends Model
         'user_id',
         'name',
     ];
-
+    use hasFactory;
     protected $table = 'categories';
     protected $primaryKey = 'id';
     protected $guarded = [];

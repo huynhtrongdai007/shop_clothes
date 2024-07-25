@@ -182,33 +182,33 @@ class DatabaseSeeder extends Seeder
 
         DB::table('brands')->insert([
             [
-                'user_id' => 1,
+                //'user_id' => 1,
                 'name' => 'CK_1',
             ],
             [
-                'user_id' => 2,
+                //'user_id' => 2,
                 'name' => 'Diesel_2',
             ],
             [
-                'user_id' => 3,
+                //'user_id' => 3,
                 'name' => 'Polo_3',
             ],
-            [   'user_id' => 4,
+            [   //'user_id' => 4,
                 'name' => 'Tommy Hilfiger_4',
             ],
         ]);
 
         DB::table('categories')->insert([
             [
-                'user_id' => 1,
+                //'user_id' => 1,
                 'name' => 'Men',
             ],
             [
-                'user_id' => 2,
+                //'user_id' => 2,
                 'name' => 'Women',
             ],
             [
-                'user_id' => 3,
+                //'user_id' => 3,
                 'name' => 'Kids',
             ],
         ]);
@@ -218,7 +218,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 1,
                 'brand_id' => 1,
                 'category_id' => 2,
-                'user_id' => 1,
+//                'user_id' => 1,
                 'name' => 'Pure Pineapple',
                 'description' => '<div class="row"> <div class="col-lg-7"> <h5>Introduction</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> <h5>Features</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> </div> <div class="col-lg-5"> <img src="front/img/product-single/tab-desc.jpg" alt=""> </div> </div> ',
                 'content' => '',
@@ -234,7 +234,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 2,
                 'brand_id' => 2,
                 'category_id' => 2,
-                'user_id' => 2,
+//                'user_id' => 2,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -250,7 +250,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 3,
                 'brand_id' => 3,
                 'category_id' => 2,
-                'user_id' => 3,
+//                'user_id' => 3,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -266,7 +266,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 4,
                 'brand_id' => 4,
                 'category_id' => 1,
-                'user_id' => 4,
+//                'user_id' => 4,
                 'name' => 'Microfiber Wool Scarf',
                 'description' => null,
                 'content' => null,
@@ -282,7 +282,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 5,
                 'brand_id' => 1,
                 'category_id' => 3,
-                'user_id' => 5,
+//                'user_id' => 5,
                 'name' => "Men's Painted Hat",
                 'description' => null,
                 'content' => null,
@@ -298,7 +298,7 @@ class DatabaseSeeder extends Seeder
                 'id' => 6,
                 'brand_id' => 1,
                 'category_id' => 2,
-                'user_id' => 6,
+//                'user_id' => 6,
                 'name' => 'Converse Shoes',
                 'description' => null,
                 'content' => null,

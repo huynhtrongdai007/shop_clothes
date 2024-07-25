@@ -12,9 +12,9 @@ class Product extends Model
 
 
     protected $fillable = [
+
         'brand_id',
         'category_id',
-        'user_id',
         'name',
         'description',
         'content',
@@ -25,7 +25,8 @@ class Product extends Model
         'sku',
         'featured',
         'tag',
-    ];
+
+        ];
 
     use HasFactory;
     protected $table = 'products';
@@ -35,16 +36,18 @@ class Product extends Model
         return $this->hasOne(User::class,'id','user_id');
     }
 
-    public function category() {
-        return $this->hasOne(category::class,'id','category_id');
+//    public function category() {
+//        return $this->hasOne(Category::class,'id','category_id');
+//    }
+
+//    public function brand() {
+//        return $this->hasOne(Brand::class,'id','brand_id');
+//    }
+    public function brand() {
+        return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
-    public function brand() {
-        return $this->hasOne(Brand::class,'id','brand_id');
-    }
-    public function brands() {
-        return $this->hasMany(Brand::class,'brand_id','id');
-    }
+
     public function productCategory() {
         return $this->belongsTo(Category::class,'category_id','id');
     }
