@@ -1460,27 +1460,27 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="./admin/user" class="mm-active">
+                                    <a href="./admin/user" class="{{(request()-> segment(2) == 'user') ? 'mm-active' : ' '}}">
                                         <i class="metismenu-icon"></i>User
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./admin/order">
+                                    <a href="./admin/order" class="{{(request()-> segment(2) == 'order') ? 'mm-active' : ' '}}">
                                         <i class="metismenu-icon"></i>Order
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./admin/product">
+                                    <a href="./admin/product" class="{{(request()-> segment(2) == 'product') ? 'mm-active' : ' '}}">
                                         <i class="metismenu-icon"></i>Product
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./admin/category">
+                                    <a href="./admin/category" class="{{(request()-> segment(2) == 'category') ? 'mm-active' : ' '}}">
                                         <i class="metismenu-icon"></i>Category
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./admin/brand">
+                                    <a href="./admin/brand" class="{{(request()-> segment(2) == 'brand') ? 'mm-active' : ' '}}">
                                         <i class="metismenu-icon"></i>Brand
                                     </a>
                                 </li>

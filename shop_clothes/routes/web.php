@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductDetailController;
+use App\Http\Controllers\Admin\ProductImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeController;
@@ -135,6 +141,12 @@ Route::prefix( 'admin')-> middleware('CheckAdminLogin') -> group(function (){
     Route::redirect('', 'admin/user');
 
     Route::resource('user', UserController::class);
+    Route::resource('category', ProductCategoryController::class);
+    Route::resource('brand', BrandController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('order', OrderController::class);
+    Route::resource('product/{product_id}/image', ProductImageController::class);
+    Route::resource('product/{product_id}/detail', ProductDetailController::class);
 
     Route::prefix('login') -> group(function (){
        Route::get('',[HomeController::class,'getLogin'])->withoutMiddleware('CheckAdminLogin');

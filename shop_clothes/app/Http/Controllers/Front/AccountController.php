@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Front;
 
 
 use App\Models\User;
-use app\Utilities\Constant;
+use App\Utilities\Constant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\User\UserServiceInterface;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+
 
 
 //session_start();

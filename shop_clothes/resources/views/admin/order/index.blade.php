@@ -1,9 +1,9 @@
-
 @extends('admin.layout.master')
-@Section('title','Admin')
+@Section('title','Order')
 @section('body')
 
-                <!-- Main -->
+
+    <!-- Main -->
                 <div class="app-main__inner">
                     <div class="app-page-title">
                         <div class="page-title-wrapper">
@@ -12,21 +12,13 @@
                                     <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                                 </div>
                                 <div>
-                                    User
+                                    Order
                                     <div class="page-title-subheading">
                                         View, create, update, delete and manage.
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="page-title-actions">
-                                <a href="./admin/user/create" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
-                                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                                        <i class="fa fa-plus fa-w-20"></i>
-                                    </span>
-                                    Create
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -38,7 +30,7 @@
 
                                     <form>
                                         <div class="input-group">
-                                            <input type="search" name="search" id="search" value="{{request('search')}}"
+                                            <input type="search" name="search" id="search" value="{{ request('search')}}"
                                                 placeholder="Search everything" class="form-control">
                                             <span class="input-group-append">
                                                 <button type="submit" class="btn btn-primary">
@@ -62,70 +54,67 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">ID</th>
-                                                <th>Full Name</th>
-                                                <th class="text-center">Email</th>
-                                                <th class="text-center">Level</th>
+                                                <th>Customer / Products</th>
+                                                <th class="text-center">Address</th>
+                                                <th class="text-center">Amount</th>
+                                                <th class="text-center">Status</th>
                                                 <th class="text-center">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($users as $user)
+
+                                        @foreach($orders as $order)
                                             <tr>
-                                                <td class="text-center text-muted">#{{ $user -> id}}</td>
+                                                <td class="text-center text-muted">#{{$order -> id}}</td>
                                                 <td>
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle"
+                                                                    <img style="height: 60px;"
                                                                         data-toggle="tooltip" title="Image"
                                                                         data-placement="bottom"
-                                                                        src="front/img/product-single/{{$user -> avatar ?? 'default-avatar.jpg'}}" alt="">
+                                                                        src="front/img/products/{{$order -> orderDetails[0] ->product ->  productImages[0]->path}}" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
-                                                                <div class="widget-heading">{{$user -> name}}</div>
+                                                                <div class="widget-heading">{{$order -> first_name . ' ' . $order -> last_name}}</div>
+                                                                <div class="widget-subheading opacity-7">
+
+                                                                    {{$order->orderDetails[0]->product->name }}
+                                                                    @if(count($order->orderDetails) > 1)
+                                                                        (and {{count($order->orderDetails) }} other products)
+                                                                    @endif
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">{{$user -> email}}</td>
                                                 <td class="text-center">
-                                                    {{\App\Utilities\Constant::$user_level[$user -> level]}}
+                                                    {{$order -> street_address . ' ' . $order-> town_city}}
+                                                </td>
+                                                <td class="text-center">${{array_sum(array_column($order -> orderDetails ->toArray(), 'total')) }}</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-dark">
+                                                        {{\app\Utilities\Constant::$order_status[$order -> status]}}
+                                                    </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="./admin/user/{{$user -> id}}"
+                                                    <a href="./admin/order/{{$order -> id}}"
                                                         class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
                                                         Details
                                                     </a>
-                                                    <a href="./admin/user/{{$user -> id}}/edit" data-toggle="tooltip" title="Edit"
-                                                        data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
-                                                        <span class="btn-icon-wrapper opacity-8">
-                                                            <i class="fa fa-edit fa-w-20"></i>
-                                                        </span>
-                                                    </a>
-                                                    <form class="d-inline" action="./admin/user/{{$user -> id}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
-                                                            type="submit" data-toggle="tooltip" title="Delete"
-                                                            data-placement="bottom"
-                                                            onclick="return confirm('Do you really want to delete this item?')">
-                                                            <span class="btn-icon-wrapper opacity-8">
-                                                                <i class="fa fa-trash fa-w-20"></i>
-                                                            </span>
-                                                        </button>
-                                                    </form>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                        @endforeach
 
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <div class="d-block card-footer">
-                                    {{$users -> links()}}
+                                    {{$orders -> links()}}
                                 </div>
 
                             </div>

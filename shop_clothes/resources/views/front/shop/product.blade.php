@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="front/img/products/{{$product -> productImages[0]->path}}" alt="">
+                                <img class="product-big-img" src="front/img/products/{{$product -> productImages[0]->path ?? ''}}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIES</span>: {{$product -> category ->name}}</li>
+                                    <li><span>CATEGORIES</span>: {{$product -> productCategory ->name}}</li>
                                     <li><span>TAGS</span>: {{$product -> tag}}</li>
                                 </ul>
                                 <div class="pd-share">

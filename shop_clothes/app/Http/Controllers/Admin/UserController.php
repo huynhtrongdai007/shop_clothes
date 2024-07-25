@@ -22,10 +22,10 @@ class UserController extends Controller
     public function __construct(UserService $useService){
         $this->useService = $useService;
     }
-    public function index()
+    public function index(Request $request)
     {
         //
-        $users = $this -> useService ->all();
+        $users = $this -> useService ->searchAndPaginate('name', $request -> get('search'));
         return view('admin.user.index',compact('users'));
     }
 
