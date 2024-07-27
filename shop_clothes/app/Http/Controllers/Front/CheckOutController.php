@@ -8,7 +8,8 @@ use App\Service\Order\OrderServiceInterface;
 use App\Service\OrderDetail\OrderDetailServiceInterface;
 use App\Utilities\VNPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use app\Utilities\Constant;
+use App\Utilities\Constant;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -51,6 +52,11 @@ class CheckOutController extends Controller
         }
 
         if ($request->payment_type == 'pay_later') {
+            // Gửi email
+            $total = Cart::total();
+            $subtotal = Cart::subtotal();
+            $this->sendMail($order,$total,$subtotal); //Gọi hàm gửi email đã được định nghĩa
+
             //03.Xóa giỏ hàng
             Cart::destroy();
                     
@@ -97,5 +103,16 @@ class CheckOutController extends Controller
     public function result(){
         $notification = session('notification');
         return view('front.checkout.result', compact('notification'));
+    }
+
+    public function sendMail($order,$total,$subtotal) {
+        $email_to = $order->email;
+        Mail::send('front.checkout.email', 
+        compact('order','total','subtotal'),
+        function ($message) use($email_to) {
+            $message->from('2231121510@ut.edu.vn','Shop Clothes');
+            $message->to($email_to, $email_to);
+            $message->subject('Order Notification');
+        });
     }
 }
