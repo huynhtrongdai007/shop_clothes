@@ -1,4 +1,3 @@
-
 @extends('admin.layout.master')
 @Section('title','Create')
 @section('body')
@@ -69,7 +68,7 @@
                                             <label for="password"
                                                 class="col-md-3 text-md-right col-form-label">Password</label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="password" id="password" placeholder="Password" type="password"
+                                                <input required name="password" id="password" placeholder="Password" type="password"
                                                     class="form-control" value="">
                                             </div>
                                         </div>
@@ -78,7 +77,7 @@
                                             <label for="password_confirmation"
                                                 class="col-md-3 text-md-right col-form-label">Confirm Password</label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" type="password"
+                                                <input required name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" type="password"
                                                     class="form-control" value="">
                                             </div>
                                         </div>
@@ -88,7 +87,7 @@
                                                 Company Name
                                             </label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="company_name" id="company_name"
+                                                <input required name="company_name" id="company_name"
                                                     placeholder="Company Name" type="text" class="form-control"
                                                     value="">
                                             </div>
@@ -98,7 +97,7 @@
                                             <label for="country"
                                                 class="col-md-3 text-md-right col-form-label">Country</label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="country" id="country" placeholder="Country"
+                                                <input required name="country" id="country" placeholder="Country"
                                                     type="text" class="form-control" value="">
                                             </div>
                                         </div>
@@ -108,7 +107,7 @@
                                                 Street Address
                                             </label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="street_address" id="street_address"
+                                                <input required name="street_address" id="street_address"
                                                     placeholder="Street Address" type="text" class="form-control"
                                                     value="">
                                             </div>
@@ -119,7 +118,7 @@
                                                 Postcode Zip
                                             </label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="postcode_zip" id="postcode_zip"
+                                                <input required name="postcode_zip" id="postcode_zip"
                                                     placeholder="Postcode Zip" type="text" class="form-control"
                                                     value="">
                                             </div>
@@ -130,7 +129,7 @@
                                                 Town City
                                             </label>
                                             <div class="col-md-9 col-xl-8">
-                                                <input name="town_city" id="town_city" placeholder="Town City"
+                                                <input required name="town_city" id="town_city" placeholder="Town City"
                                                     type="text" class="form-control" value="">
                                             </div>
                                         </div>

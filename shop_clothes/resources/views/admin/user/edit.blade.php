@@ -59,7 +59,7 @@
                                                 class="col-md-3 text-md-right col-form-label">Email</label>
                                             <div class="col-md-9 col-xl-8">
                                                 <input required name="email" id="email" placeholder="Email" type="email"
-                                                    class="form-control" value="{{$user -> emailr}}">
+                                                    class="form-control" value="{{$user -> email}}" readonly>
                                             </div>
                                         </div>
 

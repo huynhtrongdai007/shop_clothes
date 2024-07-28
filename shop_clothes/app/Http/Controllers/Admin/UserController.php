@@ -49,9 +49,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->get( 'password') != $request->get(  'password_confirmation'))
-        { return back()
-                ->with('notification' , 'ERROR: Confirm password does not match');
+        if (($request->get( 'password') != null) && ($request->get( 'password_confirmation') != null)){
+            if ($request->get( 'password') != $request->get(  'password_confirmation'))
+            { return back()
+                    ->with('notification' , 'ERROR: Confirm password does not match');
+            }
+        }
+        $email = $request->email;
+        $User = User::where('email', $email)->first();
+        if ($User)
+        {   return back()
+            ->with('notification', 'ERROR: Email already exist');
         }
         $data = $request->all();
         $data['password'] = bcrypt($request->get( 'password'));
@@ -101,7 +109,7 @@ class UserController extends Controller
         $data = $request->all();
     //Xử Lý mật khẩu
 
-    if ($request->get( 'password') != null) {
+    if (($request->get( 'password') != null) && ($request->get( 'password_confirmation') != null)){
         if ($request->get(  'password') != $request->get(  'password_confirmation')) {
             return back()
                 ->with('notification', 'ERROR: Confirm password does not match');
@@ -109,9 +117,12 @@ class UserController extends Controller
 
         $data['password']= bcrypt($request->get(  'password'));
         }
+
         else {
         unset($data['password']);
         }
+
+
 
         //Xu ly anh
         if ($request->hasFile(  'image')) {
