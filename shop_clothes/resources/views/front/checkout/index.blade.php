@@ -6,7 +6,7 @@
     <!-- Shopping Cart Section Begin -->
     <div class="checkout-section spad">
         <div class="container">
-            <form action="" method="POST" class="checkout-form">
+            <form action="" method="post" class="checkout-form">
                 @csrf
                 <div class="row">
                     @if (Cart::count() > 0)
@@ -104,9 +104,9 @@
                         </div>
                     </div>
                     @else
-                    <div class="col-lg-12">
-                        <h4>Your is empty.</h4>
-                    </div>
+                        <div class="col-lg-12">
+                            <h4>Your cart is empty.</h4>
+                        </div>
 
                     @endif
 

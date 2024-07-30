@@ -55,32 +55,34 @@ class CheckOutController extends Controller
             // Gửi email
             $total = Cart::total();
             $subtotal = Cart::subtotal();
-            $this->sendMail($order,$total,$subtotal); //Gọi hàm gửi email đã được định nghĩa
+           $this->sendMail($order, $total, $subtotal); //Gọi hàm gửi email đã được định nghĩa
 
             //03.Xóa giỏ hàng
             Cart::destroy();
-                    
+
             //04. Trả về kết quả thông báo
-            return redirect('checkout/result')->with('notification','Success! you will pay delivery. Please check your email');
+            return redirect('checkout/result')
+                ->with('notification', 'Success! you will pay delivery. Please check your email');
         }
 
-        if ($request->payment_type == 'online_paypal') {
-            //01.Lấy URL thanh toán VNPay
-            $data_url = VNPay::vnpay_create_payment([
-                'vnp_TxnRef' => $order->id, //ID của đơn hàng.
-                'vnp_OrderInfo' => 'Mô tả đơn hàng ở đây...', // Mô tả đơn hàng (điền tùy ý phù hợp)
-                'vnp_Amount' => Cart::total(0,'','') * 23070,  // Tổng giá đơn hàng * với tỉ giá chuyển sang tiền việc 
 
-            ]);
-                    
-            //02. Chuyển hướng tới URL lấy được
-            dd($data_url);
-            return redirect()->to($data_url);
-        }
+//        if ($request->payment_type == 'online_paypal') {
+//            //01.Lấy URL thanh toán VNPay
+//            $data_url = VNPay::vnpay_create_payment([
+//                'vnp_TxnRef' => $order->id, //ID của đơn hàng.
+//                'vnp_OrderInfo' => 'Mô tả đơn hàng ở đây...', // Mô tả đơn hàng (điền tùy ý phù hợp)
+//                'vnp_Amount' => Cart::total(0,'','') * 23070,  // Tổng giá đơn hàng * với tỉ giá chuyển sang tiền việc
+//
+//            ]);
+//
+//            //02. Chuyển hướng tới URL lấy được
+//            return redirect()->to($data_url);
+//        }
+
     }
 
     public function vnPayCheck(Request $request) {
-        //01. Lấy data từ URL (do VNPay gửi về qua $vnp_ResponseCode) 
+        //01. Lấy data từ URL (do VNPay gửi về qua $vnp_ResponseCode)
         $vnp_ResponseCode = $request->get('vnp_ResponseCode'); // Mã phản hồi kết quả thanh toán. 00= Thành công
         $vnp_TxnRef = $request->get('vnp_TxnRef'); // order_id
         $vnp_Amount = $request->get('vnp_Amount'); //Số tiền thanh toán
@@ -88,12 +90,20 @@ class CheckOutController extends Controller
         if ($vnp_ResponseCode != null) {
             // Nếu thành công:
             if ($vnp_ResponseCode == 00){
+                //Cập nhật trạng thái Order:
+                $this->orderService->update(['status' => Constant::order_status_Paid], $vnp_TxnRef);
+
+                //Gui Email
+                $order = $this -> orderService-> find($vnp_TxnRef); //$vnp_TxnRef chinh la order_id
+                $total = Cart::total();
+                $subtotal = Cart::subtotal();
+//                $this->sendMail($order,$total,$subtotal); //Gọi hàm gửi email đã được định nghĩa
                 // Xóa giỏ hàng
                 Cart::destroy();
                 // Thông báo kết quả
                 return redirect('checkout/result')->with('notification','Success! Has paid online. Please check your email.');
             }else{ //Nếu không thành công
-                $this->orderService->delete($vnp_T);
+                $this->orderService->delete($vnp_TxnRef);
                 // Thông báo Lỗi
                 return redirect('checkout/result')->with('notification','ERROR: Payment failed or canceled.');
             }
@@ -105,12 +115,12 @@ class CheckOutController extends Controller
         return view('front.checkout.result', compact('notification'));
     }
 
-    public function sendMail($order,$total,$subtotal) {
+    private function sendMail($order,$total,$subtotal) {
         $email_to = $order->email;
-        Mail::send('front.checkout.email', 
-        compact('order','total','subtotal'),
+        Mail::send('front.checkout.email',
+            compact('order','total','subtotal'),
         function ($message) use($email_to) {
-            $message->from('2231121510@ut.edu.vn','Shop Clothes');
+            $message->from('nguyenhaidang0128@gmail.com','Demo');
             $message->to($email_to, $email_to);
             $message->subject('Order Notification');
         });

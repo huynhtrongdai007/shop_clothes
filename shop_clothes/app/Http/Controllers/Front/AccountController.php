@@ -98,7 +98,7 @@ class AccountController extends Controller
                 'name'=> $request->name,
                 'email'=> $request->email,
                 'password'=> bcrypt($request->password),
-                'level'=> 2,
+                'level'=> Constant::user_level_client,
                 'description' => 'abc',
             ];
 
