@@ -56,7 +56,7 @@
         Product Slider
     --------------------*/
    $(".product-slider").owlCarousel({
-        loop: true,
+        loop: false,
         margin: 25,
         nav: true,
         items: 4,
@@ -254,6 +254,27 @@
         var rowId = $button.parent().find('input').data('rowid');
         updateCart(rowId, newVal);
 	});
+    /*-------------------
+		Quantity change
+	--------------------- */
+    const product_men = $(".product-slider.men");
+    const product_women = $(".product-slider.women");
+
+    $('.filter-control').on('click', '.item', function (){
+        const $item = $(this);
+        const filter = $item.data('tag');
+        const category = $item.data('category');
+        $item.siblings().removeClass('active');
+        $item.addClass('active');
+        if (category === 'men')
+        {
+            product_men.owlcarousel2_filter(filter);
+        }
+        if (category === 'women')
+        {
+            product_women.owlcarousel2_filter(filter);
+        }
+})
 
 })(jQuery);
 
@@ -315,7 +336,7 @@ function removeCart(rowId){
             var cartHover_tbody = $('.select-items tbody');
             var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowid='" + rowId +"']");
             cartHover_existItem.remove();
-            
+
             // xử lý trong trang "shop/cart"
             var cart_tbody = $('.cart-table tbody');
             var cart_existItem = cart_tbody.find("tr" + "[data-rowid='" + rowId +"']");
@@ -341,11 +362,11 @@ function destroyCart(){
             $('.cart-count').text('0');
             $('.cart-price').text('0');
             $('.cart-total h5').text('0');
-         
+
 
             var cartHover_tbody = $('.select-items tbody');
             cartHover_tbody.children().remove();
-            
+
             // xử lý trong trang "shop/cart"
             var cart_tbody = $('.cart-table tbody');
             cart_tbody.children().remove();
@@ -370,7 +391,7 @@ function updateCart(rowId,qty){
             $('.cart-count').text(response['count']);
             $('.cart-price').text('$' + response['total']);
             $('.cart-total h5').text('$' + response['total']);
-         
+
             var cartHover_tbody = $('.select-items tbody');
             var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId='" + rowId +"']");
             if(qty===0){

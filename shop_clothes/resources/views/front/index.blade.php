@@ -91,13 +91,14 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active item" data-tag="*" data-category="women" >All</li>
+                            <li class="item" data-tag=".Clothing" data-category="women">Clothing</li>
+                            <li class="item" data-tag=".Trousers" data-category="women">Trousers</li>
+                            <li class="item" data-tag=".Shoes" data-category="women">Shoes</li>
+                            <li class="item" data-tag=".Hat" data-category="women">Hat</li>
                         </ul>
                     </div>
-                    <div class="product-slider owl-carousel">
+                    <div class="product-slider owl-carousel women">
 
                         @foreach($featuredProducts['women'] as $product)
                             @include('front.component.product-item')
@@ -160,13 +161,14 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active item" data-tag="*" data-category="men" >All</li>
+                            <li class="item" data-tag=".Clothing" data-category="men">Clothing</li>
+                            <li class="item" data-tag=".Trousers" data-category="men">Trousers</li>
+                            <li class="item" data-tag=".Shoes" data-category="men">Shoes</li>
+                            <li class="item" data-tag=".Hat" data-category="men">Hat</li>
                         </ul>
                     </div>
-                    <div class="product-slider owl-carousel">
+                    <div class="product-slider owl-carousel men">
                         @foreach($featuredProducts['men'] as $product)
                             @include('front.component.product-item')
                         @endforeach
