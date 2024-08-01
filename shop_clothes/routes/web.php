@@ -120,6 +120,11 @@ Route::prefix( 'acc') -> group(function (){
     Route::post('login',[AccountController::class,'checkLogin']);
     Route::post('register',[AccountController::class,'postRegister']);
     Route::get('logout',[AccountController::class,'logout']);
+    Route::prefix('my-order') -> group (function ()
+    {
+       Route::get('/',[AccountController::class,'myOrderIndex']);
+       Route::get('{id}',[AccountController::class,'myOrderShow']);
+    });
 });
 
 

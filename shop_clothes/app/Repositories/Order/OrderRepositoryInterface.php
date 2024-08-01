@@ -6,5 +6,5 @@ use App\Repositories\RepositoryInterface;
 
 interface OrderRepositoryInterface
 {
-
+    public function getOrderById($userId);
 }

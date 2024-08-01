@@ -2,6 +2,8 @@
 @Section('title','Cart')
 @section('body')
 
+
+
 <!-- Shopping Cart Section Begin -->
 <section class="shoping-cart spad">
     <div class="container">
@@ -18,7 +20,7 @@
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th>
-                                    <i onclick="confirm('Are you sure to delete all carts?') === true ? destroyCart() : ''" 
+                                    <i onclick="confirm('Are you sure to delete all carts?') === true ? destroyCart() : ''"
                                    style="cursor:pointer" class="ti-close"></i>
                                 </th>
 
@@ -26,9 +28,9 @@
                         </thead>
                         <tbody>
                             @foreach ($carts as $cart)
-                         
+
                             <tr data-rowId="{{$cart->rowId}}">
-                                <td class="cart-pic first-row"><img 
+                                <td class="cart-pic first-row"><img
                                     style="height:170px;" src="front/img/products/{{$cart->options->images[0]->path}}" alt=""></td>
                                 <td class="cart-title first-row">
                                     <h5>{{$cart->name}}</h5>
@@ -78,9 +80,9 @@
                     <h4>Your cart is empty.</h4>
                 </div>
             @endif
-            
+
         </div>
-       
+
     </div>
 </section>
 @endsection

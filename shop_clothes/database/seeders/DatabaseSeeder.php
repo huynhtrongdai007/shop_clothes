@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             ['id' => 1,
             'name' => 'CodeLean',
+            'first_name' => 'Code',
+            'last_name' => 'Lean',
             'email' => 'CodeLean@gmail.com',
             'password' => Hash::make('123456'),
             'avatar' => null,
@@ -42,6 +44,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => 'admin',
+                'first_name' => 'admin',
+                'last_name' => ' ',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => null,
@@ -51,6 +55,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 3,
                 'name' => 'Shane Lynch',
+                'first_name' => 'Shane',
+                'last_name' => 'Lynch',
                 'email' => 'ShaneLynch@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => null,
@@ -60,6 +66,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => 'Brandon Kelley',
+                'first_name' => 'Brandon',
+                'last_name' => 'Kelley',
                 'email' => 'BrandonKelley@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => 'avatar-1.png',
@@ -69,6 +77,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 5,
                 'name' => 'Roy Banks',
+                'first_name' => 'Roy',
+                'last_name' => 'Banks',
                 'email' => 'RoyBanks@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => 'avatar-2.png',

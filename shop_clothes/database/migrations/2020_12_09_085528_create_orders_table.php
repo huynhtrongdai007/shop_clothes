@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id') ->nullable();
             $table->string('first_name');
-            //$table->string('last_name');
+            $table->string('last_name');
             $table->string('company_name')->nullable();
             $table->string('country');
             $table->string('street_address');

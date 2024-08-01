@@ -20,13 +20,13 @@
                             <input type="hidden" id="user_id" name="user_id" value="{{Auth::user() -> id ??''}}">
 
                             <div class="col-lg-12">
-                                <label for="fir">Full Name <span>*</span></label>
-                                <input type="text" id="fir" name="first_name" value="{{Auth::user() -> name ??''}}">
+                                <label for="fir">First Name <span>*</span></label>
+                                <input type="text" id="fir" name="first_name" value="{{Auth::user() -> first_name ??''}}">
                             </div>
-{{--                            <div class="col-lg-12">--}}
-{{--                                <label for="last">Last Name <span>*</span></label>--}}
-{{--                                <input type="text" id="last" name="last_name" value="{{Auth::user() -> lastname ??''}}">--}}
-{{--                            </div>--}}
+                            <div class="col-lg-12">
+                                <label for="last">Last Name <span>*</span></label>
+                                <input type="text" id="last" name="last_name" value="{{Auth::user() -> last_name ??''}}">
+                            </div>
                             <div class="col-lg-12">
                                 <label for="cun">Country <span>*</span></label>
                                 <input type="text" id="cun" name="country" value="{{Auth::user() -> country ??''}}">
