@@ -51,19 +51,6 @@
                     </div>
                 </div>
                 <div class="ht-right">
-
-{{--                    @if(Auth::check())--}}
-{{--                        <a href="./acc/login" class="login-panel">--}}
-{{--                            <i class="fa fa-user"></i>--}}
-{{--                            {{ Auth::user()->name }} <button>Logout</button>--}}
-{{--                        </a>--}}
-{{--                    @else--}}
-
-{{--                        <a href="./acc/login" class="login-panel"><i class="fa fa-user"></i>Login</a>--}}
-{{--                    @endif--}}
-
-
-
                     @if (Auth::check())
                         <span class="login-panel"> <i class="fa fa-user"></i>
                         {{ Auth::user()->name }}
@@ -83,10 +70,10 @@
                         </select>
                     </div>
                     <div class="top-social">
-                        <a href="#"><i class="ti-facebook"> </i></a>
+                        <a href="https://www.facebook.com/nguyen.haidang.9212"><i class="ti-facebook"> </i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
+                        <a href="https://www.linkedin.com/in/nguyen-hai-dang-0a6891187/"><i class="ti-linkedin"></i></a>
+                        <a href="https://www.pinterest.com/nguyenhaidang0128/"><i class="ti-pinterest"></i></a>
                     </div>
                 </div>
             </div>
@@ -98,7 +85,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="./">
-                               <img src="front/img/logo.png" height="25" alt="" />
+                               <img src="front/img/home3.png" height="25" alt="" />
                             </a>
                         </div>
                     </div>
@@ -267,8 +254,8 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-Logo">
-                            <a href="index.html">
-                                <img src="front/img/footer-logo.png" height="25" alt="">
+                            <a href="./">
+                                <img src="front/img/home3.png" height="25" alt="">
                             </a>
                         </div>
                         <ul>
@@ -277,10 +264,10 @@
                             <li>Email:2231121508@ut.edu.com</li>
                         </ul>
                         <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="https://www.facebook.com/nguyen.haidang.9212"><i class="ti-facebook"> </i></a>
+                            <a href="#"><i class="ti-twitter-alt"></i></a>
+                            <a href="https://www.linkedin.com/in/nguyen-hai-dang-0a6891187/"><i class="ti-linkedin"></i></a>
+                            <a href="https://www.pinterest.com/nguyenhaidang0128/"><i class="ti-pinterest"></i></a>
                         </div>
                     </div>
                 </div>

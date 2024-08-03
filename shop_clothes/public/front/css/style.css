@@ -2710,6 +2710,8 @@ ol {
 
 .cart-table table tr td.cart-pic {
 	width: 21%;
+    padding-left: 70px;
+    height: 100px
 }
 
 .cart-table table tr td.cart-title {

@@ -1,4 +1,4 @@
-@extends('front.layout.master2')
+@extends('front.layout.master')
 @Section('title','Login')
 @section('body')
 

@@ -25,10 +25,10 @@
                                 <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th class="p-name">Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th class="p-name">ID</th>
+                                    <th>Products</th>
                                     <th>Total</th>
+                                    <th>Detail</th>
                                     <th>
                                         <i onclick="confirm('Are you sure to delete all carts?') === true ? destroyCart() : ''"
                                            style="cursor:pointer" class="ti-close"></i>
@@ -40,13 +40,13 @@
                                 @foreach ($orders as $order)
 
                                     <tr>
-                                        <td class="cart-pic first-row">
+                                        <td class="cart-pic first-row" >
                                             <img style="height: 100px;"
                                                 src="front/img/products/{{ $order->orderDetails[0]->product->productImages[0]->path }}"
                                                 alt="">
                                         </td>
                                         <td class="first-row">#{{ $order->id }}</td>
-                                        <td class="cart-title first-row">
+                                        <td class="cart-title first-row" style="text-align: center">
                                         <h5>
                                             {{ $order->orderDetails[0]->product->name }}
                                             @if(count($order->orderDetails) > 1)

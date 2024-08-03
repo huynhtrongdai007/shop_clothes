@@ -129,9 +129,10 @@
                                             <div class="col-md-9 col-xl-8">
                                                 <div class="position-relative form-check pt-sm-2">
                                                     <input name="featured" id="featured" type="checkbox" value="1"  {{$product -> featured ? 'checked' : ''}}
-                                                           class="form-check-input">
+                                                           class="form-check-input" >
                                                     <label for="featured" class="form-check-label">Featured</label>
                                                 </div>
+
                                             </div>
                                         </div>
 
@@ -169,6 +170,8 @@
                 </div>
                 <!-- End Main -->
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script>
+
     <script>
         CKEDITOR.replace('description');
     </script>
