@@ -140,7 +140,7 @@
                                         <label for="featured"
                                             class="col-md-3 text-md-right col-form-label">Featured</label>
                                         <div class="col-md-9 col-xl-8">
-                                            <p>{{$product -> featured ? 'Yes' : 'No'}}</p>
+                                            <p>{{$product -> featured=="1" ? 'Yes' : 'No'}}</p>
                                         </div>
                                     </div>
 

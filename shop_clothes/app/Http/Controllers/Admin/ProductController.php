@@ -53,6 +53,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['featured'] = $request->featured == 'on' ? 1 : 0;
         $data['qty'] = 0;
 //        $data['category_id'] =3;
         $product = $this -> productService -> create($data);
@@ -95,8 +96,9 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
-    {
+    {   
         $data = $request->all();
+        $data['featured'] = $request->featured == 'on' ? 1 : 0;
         $this -> productService -> update($data, $id);
         return redirect('admin/product/' . $id);
     }

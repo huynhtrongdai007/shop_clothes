@@ -97,7 +97,7 @@
                                                 <td class="text-center">{{$product -> qty}}</td>
                                                 <td class="text-center">
                                                     <div class="badge badge-success mt-2">
-                                                        {{$product -> featured ? 'Yes' : 'No'}}
+                                                        {{$product -> featured=="1" ? 'Yes' : 'No'}}
                                                     </div>
                                                 </td>
                                                 <td class="text-center">

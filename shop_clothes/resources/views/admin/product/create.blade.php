@@ -126,7 +126,7 @@
                                                 class="col-md-3 text-md-right col-form-label">Featured</label>
                                             <div class="col-md-9 col-xl-8">
                                                 <div class="position-relative form-check pt-sm-2">
-                                                    <input name="featured" id="featured" type="checkbox" value="1" class="form-check-input">
+                                                    <input name="featured" id="featured" type="checkbox" class="form-check-input">
                                                     <label for="featured" class="form-check-label">Featured</label>
                                                 </div>
                                             </div>
