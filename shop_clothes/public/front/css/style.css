@@ -741,6 +741,7 @@ ol {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	position: relative;
+
 }
 
 .nav-item .nav-menu li {
@@ -748,6 +749,8 @@ ol {
 	display: inline-block;
 	margin-left: -5px;
 	position: relative;
+    width:214px;
+    text-align: center;
 }
 
 .nav-item .nav-menu li.active a {
@@ -4148,6 +4151,7 @@ ol {
 	}
 	.nav-item .nav-menu {
 		display: none;
+
 	}
 	.slicknav_menu {
 		display: block;

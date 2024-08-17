@@ -131,6 +131,8 @@ Route::prefix( 'acc') -> group(function (){
 
 Route::prefix( 'blog') -> group(function (){
     Route::get('',[\App\Http\Controllers\Front\BlogController::class,'blog']);
+    Route::get('{id}',[\App\Http\Controllers\Front\BlogController::class,'show']);
+
 });
 
 Route::prefix( 'contact') -> group(function (){
