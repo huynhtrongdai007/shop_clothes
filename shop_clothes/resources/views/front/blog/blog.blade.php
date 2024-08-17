@@ -32,7 +32,7 @@
                         <div class="blog-catagory">
                             <h4>Categories</h4>
                             <ul>
-                                <li><a href="">CodeLean</a></li>
+                                <li><a href="">Camping</a></li>
                                 <li><a href="">Picnic</a></li>
                                 <li><a href="">Travel</a></li>
                                 <li><a href="">Model</a></li>
@@ -42,7 +42,7 @@
                             <h4>Recent Post</h4>
                             <div class="recent-blog">
                                 @foreach($blogs->take(3) as $blog)
-                                <a href="#" class="rb-item">
+                                <a href="blog/{{$blog -> id}}" class="rb-item">
                                     <div class="rb-pic">
                                         <img src="front/img/blog/{{$blog->image}}" alt="">
                                     </div>
@@ -67,9 +67,9 @@
                                     <img src="front/img/blog/{{$blog->image}}" alt="">
                                 </div>
                                 <div class="bi-text">
-                                    <a href="blog-details.html">
-                                    </a>
-                                    <h4>{{ $blog->title }}</h4>
+                                    <a href="blog/{{$blog -> id}}">
+
+                                    <h4>{{ $blog->title }}</h4> </a>
                                     <p>{{ $blog->category }} <span>{{ date('M,d,Y', strtotime($blog -> created_at)) }}</span></p>
                                 </div>
                             </div>

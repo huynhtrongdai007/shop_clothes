@@ -184,37 +184,37 @@
         <div class="insta-item set-bg" data-setbg="front/img/insta-1.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
         <div class="insta-item set-bg" data-setbg="front/img/insta-2.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
         <div class="insta-item set-bg" data-setbg="front/img/insta-3.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
         <div class="insta-item set-bg" data-setbg="front/img/insta-4.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
         <div class="insta-item set-bg" data-setbg="front/img/insta-5.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
         <div class="insta-item set-bg" data-setbg="front/img/insta-6.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
-                <h5><a href="#">CodeLean_Collection</a></h5>
+                <h5><a href="#"></a></h5>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@
                                     {{count($blog->blogComment) }}
                                 </div>
                             </div>
-                            <a href="">
+                            <a href="blog/{{$blog -> id}}">
                                 <h4>{{$blog -> title}}</h4>
                             </a>
                             <p> {{$blog -> subtittle}}</p>
