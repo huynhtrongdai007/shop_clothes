@@ -1484,6 +1484,16 @@
                                         <i class="metismenu-icon"></i>Brand
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="" class="{{(request()-> segment(2) == 'category_blog') ? 'mm-active' : ' '}}">
+                                        <i class="metismenu-icon"></i>Category Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./admin/blog" class="{{(request()-> segment(2) == 'blog') ? 'mm-active' : ' '}}">
+                                        <i class="metismenu-icon"></i>Blog
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

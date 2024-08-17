@@ -156,6 +156,8 @@ Route::prefix( 'admin')-> middleware('CheckAdminLogin') -> group(function (){
     Route::resource('order', OrderController::class);
     Route::resource('product/{product_id}/image', ProductImageController::class);
     Route::resource('product/{product_id}/detail', ProductDetailController::class);
+    Route::resource('blog', BlogController::class);
+    Route::resource('blog_category', BlogController::class);
 
     Route::prefix('login') -> group(function (){
        Route::get('',[HomeController::class,'getLogin'])->withoutMiddleware('CheckAdminLogin');
