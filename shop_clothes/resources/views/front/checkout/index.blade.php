@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="pc-item">
                                         <label for="pc-paypal">
-                                            Online Paypal
+                                            Online VNPay
                                             <input type="radio" name="payment_type" value="online_paypal" id="pc-paypal">
                                             <span class="checkmark"></span>
                                         </label>

@@ -181,6 +181,7 @@
                         <li class="{{ (request()->segment (1) == 'shop') ? 'active':''}}"> <a href="./shop">Shop</a></li>
                         <li class="{{ (request()->segment (1) == 'blog') ? 'active':''}}"><a href="./blog">Blog</a></li>
                         <li class="{{ (request()->segment (1) == 'contact') ? 'active':''}}"><a href="./contact">Contact</a></li>
+                        <li class="{{ (request()->segment (1) == 'my-order') ? 'active':''}}"><a href="./my-order">My-Order</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
@@ -290,7 +291,7 @@
                     <div class="col-lg-12">
                         <div class="copyright-text">
                             Copyright ©
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved 
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved
                         </div>
                         <div class="payment-pic">
                             <img src="front/img/payment-method.png" alt="">

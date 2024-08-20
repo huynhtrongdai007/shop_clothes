@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductDetailController;
 use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Front\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeController;
@@ -120,11 +121,12 @@ Route::prefix( 'acc') -> group(function (){
     Route::post('login',[AccountController::class,'checkLogin']);
     Route::post('register',[AccountController::class,'postRegister']);
     Route::get('logout',[AccountController::class,'logout']);
-    Route::prefix('my-order') -> group (function ()
-    {
-       Route::get('/',[AccountController::class,'myOrderIndex']);
-       Route::get('{id}',[AccountController::class,'myOrderShow']);
-    });
+
+});
+Route::prefix('my-order') -> group (function ()
+{
+    Route::get('/',[AccountController::class,'myOrderIndex']);
+    Route::get('{id}',[AccountController::class,'myOrderShow']);
 });
 
 

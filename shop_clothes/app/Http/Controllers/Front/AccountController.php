@@ -119,11 +119,11 @@ class AccountController extends Controller
     public function myOrderIndex()
     {
         $orders = $this -> orderService -> getOrderById(Auth::id());
-        return view ('front.acc.my-order.index',compact('orders'));
+        return view ('front.my-order.index',compact('orders'));
     }
     public function myOrderShow($id)
     {
         $order = $this -> orderService -> find($id);
-        return view ('front.acc.my-order.show',compact('order'));
+        return view ('front.my-order.show',compact('order'));
     }
 }
