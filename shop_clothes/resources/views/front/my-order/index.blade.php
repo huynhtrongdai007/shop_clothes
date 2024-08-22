@@ -27,6 +27,7 @@
                                     <th>Image</th>
                                     <th class="p-name">ID</th>
                                     <th>Products</th>
+                                    <th>Status</th>
                                     <th>Total</th>
                                     <th>Detail</th>
                                     <th>
@@ -53,6 +54,9 @@
                                             (and {{ (count($order->orderDetails))-1 }} other products)
                                             @endif
                                         </h5>
+                                        </td>
+                                        <td class=" first-row" style="color: blue">
+                                            <b>{{\App\Utilities\Constant::$order_status[$order->status]}}</b>
                                         </td>
                                         <td class="total-price first-row">
                                             ${{ array_sum(array_column ($order->orderDetails->toArray(), 'total')) }}

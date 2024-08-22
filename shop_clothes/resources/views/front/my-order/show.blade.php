@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <label for="fir">First Name</label>
+                                    <label for="fir">Last Name</label>
                                     <input disabled type="text" id="last" value="{{$order -> last_name}}">
                                 </div>
 
@@ -70,9 +70,9 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="checkout-content">
-                                <a href="#" class="conten-btn">
+                                <a href="#" class="content-btn" >
                                     Status:
-                                    <b>{{\App\Utilities\Constant::$order_status[$order->status]}}</b>
+                                    <b style="color: blue">{{\App\Utilities\Constant::$order_status[$order->status]}}</b>
                                 </a>
                             </div>
                             <div class="place-order">
