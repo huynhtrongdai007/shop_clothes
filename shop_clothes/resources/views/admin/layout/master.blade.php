@@ -1494,6 +1494,11 @@
                                         <i class="metismenu-icon"></i>Blog
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="./admin/contact" class="{{(request()-> segment(2) == 'contact') ? 'mm-active' : ' '}}">
+                                        <i class="metismenu-icon"></i>Contact
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

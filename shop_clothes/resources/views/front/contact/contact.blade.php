@@ -72,18 +72,21 @@
                     <div class="contact-form">
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
-                            <p>Our staff will call back later and answer your questions.</p> <form action="#" class="comment-form">
+                            <p>Our staff will call back later and answer your questions.</p>
+                             <form action="contact/store" method="POST" class="comment-form">
+                                @csrf
+ 
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your name">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your email">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <textarea placeholder="Your message "></textarea>
-                                        <button type="submit" class="site-btn">Send message</button>
-                                    </div>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="name" required placeholder="Your name">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="email" name="email" required placeholder="Your email">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <textarea name="content" required placeholder="Your message "></textarea>
+                                            <input type="submit" class="site-btn" value="Send message">
+                                        </div>
                                 </div>
                             </form>
                         </div>

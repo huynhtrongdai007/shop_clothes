@@ -18,6 +18,8 @@ use App\Repositories\OrderDetail\OrderDetailRepositoryInterface;
 use App\Repositories\OrderDetail\OrderDetailRepository;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\Contact\ContactRepositoryInterface;
+use App\Repositories\Contact\ContactRepository;
 use App\Service\Blog\BlogService;
 use App\Service\Blog\BlogServiceInterface;
 use App\Service\Brand\BrandService;
@@ -32,7 +34,8 @@ use App\Service\Order\OrderServiceInterface;
 use App\Service\Order\OrderService;
 use App\Service\OrderDetail\OrderDetailServiceInterface;
 use App\Service\OrderDetail\OrderDetailService;
-
+use App\Service\Contact\ContactService;
+use App\Service\Contact\ContactServiceInterface;
 use App\Service\User\UserService;
 use App\Service\User\UserServiceInterface;
 use Illuminate\Support\ServiceProvider;
@@ -118,6 +121,15 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             OrderDetailServiceInterface::class,
             OrderDetailService::class
+        );
+         //Contact
+         $this->app->singleton(
+            ContactRepositoryInterface::class,
+            ContactRepository::class
+        );
+        $this->app->singleton(
+            ContactServiceInterface::class,
+            ContactService::class
         );
 
     }
