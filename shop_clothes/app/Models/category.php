@@ -14,9 +14,15 @@ class Category extends Model
         'user_id',
         'name',
     ];
+    use hasFactory;
+    protected $table = 'categories';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 
     public function user() {
         return $this->hasOne(User::class,'id','user_id');
     }
-
+    public function products() {
+        return $this->hasMany(Product::class,'category_id','id');
+    }
 }

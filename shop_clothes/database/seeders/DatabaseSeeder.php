@@ -17,66 +17,35 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-//        DB::table('users')->insert([
-//            [
-//                'id' => 1,
-//                'name' => 'CodeLean',
-//                'email' => 'CodeLean@gmail.com',
-//                'password' => Hash::make('123456'),
-//                'avatar' => null,
-//                'level' => 2,
-//                'description' => null,
-//            ],
-//            [
-//                'id' => 2,
-//                'name' => 'admin',
-//                'email' => 'admin@gmail.com',
-//                'password' => Hash::make('123456'),
-//                'avatar' => null,
-//                'level' => 0,
-//                'description' => null,
-//            ],
-//            [
-//                'id' => 3,
-//                'name' => 'Shane Lynch',
-//                'email' => 'ShaneLynch@gmail.com',
-//                'password' => Hash::make('123456'),
-//                'avatar' => 'avatar-0.png',
-//                'level' => 1,
-//                'description' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
-//            ],
-//            [
-//                'id' => 4,
-//                'name' => 'Brandon Kelley',
-//                'email' => 'BrandonKelley@gmail.com',
-//                'password' => Hash::make('123456'),
-//                'avatar' => 'avatar-1.png',
-//                'level' => 1,
-//                'description' => null,
-//            ],
-//            [
-//                'id' => 5,
-//                'name' => 'Roy Banks',
-//                'email' => 'RoyBanks@gmail.com',
-//                'password' => Hash::make('123456'),
-//                'avatar' => 'avatar-2.png',
-//                'level' => 1,
-//                'description' => null,
-//            ],
-//        ]);
-        DB::table('customers')->insert([
-            [
-                'id' => 1,
-                'name' => 'CodeLean',
-                'email' => 'CodeLean@gmail.com',
-                'password' => Hash::make('123456'),
-                'avatar' => null,
-                'level' => 2,
-                'description' => null,
-            ],
+        DB::table('users')->insert([
+            ['id' => 1,
+            'name' => 'CodeLean',
+//            'first_name' => 'Code',
+//            'last_name' => 'Lean',
+            'email' => 'CodeLean@gmail.com',
+            'password' => Hash::make('123456'),
+            'avatar' => null,
+            'level' => 2,
+            'description' => null,
+                'company_name' => 'CodeGym',
+            'country' => 'Viet Nam',
+            'street_address' => 'Mon City, Mỹ Đình 2, Nam Từ Liêm',
+            'postcode_zip' => '10000',
+            'town_city' => 'Ha Noi',
+            'phone' => '82462538829',
+
+                ],
+        ]);
+
+
+
+        DB::table('users')->insert([
+
             [
                 'id' => 2,
                 'name' => 'admin',
+//                'first_name' => 'admin',
+//                'last_name' => ' ',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => null,
@@ -86,15 +55,19 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 3,
                 'name' => 'Shane Lynch',
+//                'first_name' => 'Shane',
+//                'last_name' => 'Lynch',
                 'email' => 'ShaneLynch@gmail.com',
                 'password' => Hash::make('123456'),
-                'avatar' => 'avatar-0.png',
+                'avatar' => null,
                 'level' => 1,
                 'description' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
             ],
             [
                 'id' => 4,
                 'name' => 'Brandon Kelley',
+//                'first_name' => 'Brandon',
+//                'last_name' => 'Kelley',
                 'email' => 'BrandonKelley@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => 'avatar-1.png',
@@ -104,6 +77,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 5,
                 'name' => 'Roy Banks',
+//                'first_name' => 'Roy',
+//                'last_name' => 'Banks',
                 'email' => 'RoyBanks@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => 'avatar-2.png',
@@ -111,6 +86,7 @@ class DatabaseSeeder extends Seeder
                 'description' => null,
             ],
         ]);
+//
         DB::table('blogs')->insert([
             [
                 'id' => 1,
@@ -170,27 +146,33 @@ class DatabaseSeeder extends Seeder
 
         DB::table('brands')->insert([
             [
+                //'user_id' => 1,
                 'name' => 'CK_1',
             ],
             [
+                //'user_id' => 2,
                 'name' => 'Diesel_2',
             ],
             [
+                //'user_id' => 3,
                 'name' => 'Polo_3',
             ],
-            [
+            [   //'user_id' => 4,
                 'name' => 'Tommy Hilfiger_4',
             ],
         ]);
 
         DB::table('categories')->insert([
             [
+                //'user_id' => 1,
                 'name' => 'Men',
             ],
             [
+                //'user_id' => 2,
                 'name' => 'Women',
             ],
             [
+                //'user_id' => 3,
                 'name' => 'Kids',
             ],
         ]);
@@ -199,9 +181,10 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'brand_id' => 1,
-                'product_category_id' => 2,
+                'category_id' => 2,
+//                'user_id' => 1,
                 'name' => 'Pure Pineapple',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor sit amet, consectetur adipisicing elit, sed do mod tempor',
+                'description' => '<div class="row"> <div class="col-lg-7"> <h5>Introduction</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> <h5>Features</h5> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in </p> </div> <div class="col-lg-5"> <img src="front/img/product-single/tab-desc.jpg" alt=""> </div> </div> ',
                 'content' => '',
                 'price' => 629.99,
                 'qty' => 20,
@@ -214,7 +197,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 2,
                 'brand_id' => 2,
-                'product_category_id' => 2,
+                'category_id' => 2,
+//                'user_id' => 2,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -229,7 +213,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 3,
                 'brand_id' => 3,
-                'product_category_id' => 2,
+                'category_id' => 2,
+//                'user_id' => 3,
                 'name' => 'Guangzhou sweater',
                 'description' => null,
                 'content' => null,
@@ -244,7 +229,8 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 4,
                 'brand_id' => 4,
-                'product_category_id' => 1,
+                'category_id' => 1,
+//                'user_id' => 4,
                 'name' => 'Microfiber Wool Scarf',
                 'description' => null,
                 'content' => null,
@@ -254,12 +240,13 @@ class DatabaseSeeder extends Seeder
                 'weight' => null,
                 'sku' => null,
                 'featured' => true,
-                'tag' => 'Accessories',
+                'tag' => 'Trousers',
             ],
             [
                 'id' => 5,
                 'brand_id' => 1,
-                'product_category_id' => 3,
+                'category_id' => 3,
+//                'user_id' => 5,
                 'name' => "Men's Painted Hat",
                 'description' => null,
                 'content' => null,
@@ -269,12 +256,13 @@ class DatabaseSeeder extends Seeder
                 'weight' => null,
                 'sku' => null,
                 'featured' => false,
-                'tag' => 'Accessories',
+                'tag' => 'Hat',
             ],
             [
                 'id' => 6,
                 'brand_id' => 1,
-                'product_category_id' => 2,
+                'category_id' => 2,
+//                'user_id' => 6,
                 'name' => 'Converse Shoes',
                 'description' => null,
                 'content' => null,
@@ -289,62 +277,100 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 7,
                 'brand_id' => 1,
-                'product_category_id' => 1,
-                'name' => 'Pure Pineapple',
-                'description' => null,
-                'content' => null,
-                'price' => 64,
-                'qty' => 20,
-                'discount' => 35,
-                'weight' => null,
-                'sku' => null,
-                'featured' => true,
-                'tag' => 'HandBag',
-            ],
-            [
-                'id' => 8,
-                'brand_id' => 1,
-                'product_category_id' => 1,
+                'category_id' => 1,
                 'name' => '2 Layer Windbreaker',
                 'description' => null,
                 'content' => null,
-                'price' => 44,
-                'qty' => 20,
-                'discount' => 35,
+                'price' => 45,
+                'qty' => 50,
+                'discount' => 38,
                 'weight' => null,
                 'sku' => null,
                 'featured' => true,
                 'tag' => 'Clothing',
             ],
             [
-                'id' => 9,
+                'id' => 8,
                 'brand_id' => 1,
-                'product_category_id' => 1,
-                'name' => 'Converse Shoes',
+                'category_id' => 1,
+                'name' => 'HandBag',
                 'description' => null,
                 'content' => null,
-                'price' => 35,
-                'qty' => 20,
-                'discount' => 34,
+                'price' => 200,
+                'qty' => 10,
+                'discount' => 190,
+                'weight' => null,
+                'sku' => null,
+                'featured' => true,
+                'tag' => 'Backpack',
+            ],
+            [
+                'id' => 9,
+                'brand_id' => 1,
+                'category_id' => 1,
+                'name' => 'Blue-Coat',
+                'description' => null,
+                'content' => null,
+                'price' => 100,
+                'qty' => 10,
+                'discount' => 93,
+                'weight' => null,
+                'sku' => null,
+                'featured' => true,
+                'tag' => 'Coat',
+            ],
+            [
+                'id' => 10,
+                'brand_id' => 1,
+                'category_id' => 1,
+                'name' => 'Green-Coat',
+                'description' => null,
+                'content' => null,
+                'price' => 95,
+                'qty' => 10,
+                'discount' => 90,
+                'weight' => null,
+                'sku' => null,
+                'featured' => true,
+                'tag' => 'Coat',
+            ],
+            [
+                'id' => 11,
+                'brand_id' => 1,
+                'category_id' => 1,
+                'name' => 'The Backpack',
+                'description' => null,
+                'content' => null,
+                'price' => 180,
+                'qty' => 10,
+                'discount' => 170,
+                'weight' => null,
+                'sku' => null,
+                'featured' => true,
+                'tag' => 'Backpack',
+            ],
+            [
+                'id' => 12,
+                'brand_id' => 1,
+                'category_id' => 1,
+                'name' => 'Sport Shoes',
+                'description' => null,
+                'content' => null,
+                'price' => 125,
+                'qty' => 10,
+                'discount' => 119,
                 'weight' => null,
                 'sku' => null,
                 'featured' => true,
                 'tag' => 'Shoes',
             ],
+
         ]);
 
         DB::table('product_images')->insert([
             [
                 'product_id' => 1,
                 'path' => 'product-1.jpg',
-            ],
-            [
-                'product_id' => 1,
-                'path' => 'product-1-1.jpg',
-            ],
-            [
-                'product_id' => 1,
-                'path' => 'product-1-2.jpg',
             ],
             [
                 'product_id' => 2,
@@ -378,6 +404,18 @@ class DatabaseSeeder extends Seeder
                 'product_id' => 9,
                 'path' => 'product-9.jpg',
             ],
+            [
+                'product_id' => 10,
+                'path' => 'product-10.jpg',
+            ],
+            [
+                'product_id' => 11,
+                'path' => 'product-11.jpg',
+            ],
+            [
+                'product_id' => 12,
+                'path' => 'product-12.jpg',
+            ],
         ]);
 
         DB::table('product_details')->insert([
@@ -388,35 +426,72 @@ class DatabaseSeeder extends Seeder
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 2,
                 'color' => 'blue',
                 'size' => 'M',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 3,
                 'color' => 'blue',
                 'size' => 'L',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 4,
                 'color' => 'blue',
                 'size' => 'XS',
                 'qty' => 5,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 5,
                 'color' => 'yellow',
                 'size' => 'S',
-                'qty' => 0,
+                'qty' => 2,
             ],
             [
-                'product_id' => 1,
+                'product_id' => 6,
                 'color' => 'violet',
                 'size' => 'S',
-                'qty' => 0,
+                'qty' => 2,
             ],
+            [
+                'product_id' => 7,
+                'color' => 'black',
+                'size' => 'M',
+                'qty' => 20,
+            ],
+            [
+                'product_id' => 8,
+                'color' => 'yellow',
+                'size' => 'S',
+                'qty' => 10,
+            ],
+            [
+                'product_id' => 9,
+                'color' => 'Blue',
+                'size' => 'S',
+                'qty' => 10,
+            ],
+            [
+                'product_id' => 10,
+                'color' => 'yellow',
+                'size' => 'L',
+                'qty' => 10,
+            ],
+            [
+                'product_id' => 11,
+                'color' => 'red',
+                'size' => 'XS',
+                'qty' => 10,
+            ],
+            [
+                'product_id' => 12,
+                'color' => 'yellow',
+                'size' => 'S',
+                'qty' => 10,
+            ],
+
         ]);
 
         DB::table('product_comments')->insert([

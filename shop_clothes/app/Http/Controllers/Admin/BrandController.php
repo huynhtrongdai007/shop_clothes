@@ -3,67 +3,71 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Service\Brand\BrandService;
 use Illuminate\Http\Request;
-use App\Models\Brand;
-use Illuminate\Support\Carbon;
-
 
 class BrandController extends Controller
 {
+    private $brandService;
+    public function __construct(BrandService $brandService)
+    {
+        $this->brandService = $brandService;
+    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = Brand::latest()->paginate(5);
-        $trachCat = Brand::onlyTrashed()->latest()->paginate(3);
-        return view('admin.modules.brand.index',compact('brands','trachCat'));
+        $brands = $this -> brandService ->searchAndPaginate('name', $request -> get('search'));
+        return view('admin.brand.index',compact('brands'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.modules.brand.create');
+        return view('admin.brand.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name'=>'required|unique:brands|max:255',
-        ],
-        [
-            'name.required'=>'Please Input Brand Name',
-        ]);
+        $data = $request->all();
+        $this->brandService -> create($data);
+        return redirect('admin/brand');
+    }
 
-        Brand::insert([
-            'name'=>$request->name,
-            'created_at'=>Carbon::now()
-        ]);
-        return Redirect()->back()->with('success','Brand Inserted Sucessfully');
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $brand = Brand::find($id);
-        return view('admin.modules.brand.edit',compact('brand'));
+        $brand = $this -> brandService -> find($id);
+        return view('admin.brand.edit',compact('brand'));
     }
 
     /**
@@ -71,44 +75,24 @@ class BrandController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name'=>'required|max:255',
-        ],
-        [
-            'name.required'=>'Please Input Brand Name',
-        ]);
-
-        Brand::find($id)->update([
-            'name'=>$request->name,
-            'update_at'=>Carbon::now()
-        ]);
-        return Redirect()->back()->with('success','Brand Updated Sucessfully');
+        $data = $request->all();
+        $this -> brandService -> update($data,$id);
+        return redirect('admin/brand');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        Brand::find($id)->delete();
-        return Redirect()->back()->with('success','Brand Deleted Sucessfully');
-    }
-
-    public function restore($id) {
-        $delete = Brand::withTrashed()->find($id)->restore();
-        return Redirect()->back()->with('success','Brand Restore Successfull');
-    }
-
-    public function delete($id) {
-        Brand::onlyTrashed()->find($id)->forceDelete();
-        return Redirect()->back()->with('success','Brand Permanently Deleete Successfull');
-
+         $this -> brandService -> delete($id);
+        return redirect('admin/brand');
     }
 }

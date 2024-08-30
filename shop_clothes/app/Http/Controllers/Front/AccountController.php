@@ -3,23 +3,27 @@ namespace App\Http\Controllers\Front;
 
 
 
-use App\Models\Customer;
+use App\Models\User;
+use App\Service\Order\OrderServiceInterface;
+use App\Utilities\Constant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Customer\CustomerServiceInterface;
-use Illuminate\Support\Facades\DB;
+use App\Service\User\UserServiceInterface;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 
-session_start();
+
+//session_start();
 class AccountController extends Controller
 {
 
-    private $customerService;
-    public function __construct(CustomerServiceInterface $customerService)
+    private $UserService;
+    private $orderService;
+    public function __construct(UserServiceInterface $UserService,
+                                OrderServiceInterface $orderService)
     {
-       $this->customerService = $customerService;
+       $this->UserService = $UserService;
+       $this->orderService = $orderService;
     }
 
     public function login()
@@ -30,38 +34,34 @@ class AccountController extends Controller
     {
         return view('front.acc.register');
     }
-    public function checkLogin($email, $password)
+    public function checkLogin(Request $request)
     {
-        return DB::table('customers')
-            ->where('email', $email)
-            ->where('password', $password)
-            -> first();
-    }
-    public function CustomerLogin (Request $request)
-    {
-        $email = $request->input('email');
-        $password = md5($request->input('password'));
-        $result = $this -> checkLogin($email, $password);
-        if($result)
-        {
-            Session::put('customer', $result -> id);
-            Session::put('customer_name', $result -> name);
-            return redirect('');
 
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'level' => Constant::user_level_client, //Tài khoản cấp độ khách hàng bình thường.
+        ];
+        $remember = $request->remember;
+
+        if (Auth::attempt($credentials, $remember)) {
+            return redirect() -> intended('');
+        } else {
+            return back()->
+            with('notification','ERROR: Email or Password invalid');
         }
-       else
-       {
-            return redirect() ->back()-> with('notification','Login not success');
 
-       }
     }
 
-
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->session()->flush();
-        return redirect('acc/login');
+        Auth::logout();
+
+        return redirect('/acc/login');
     }
+
+
+
 
     public function postRegister(Request $request)
     {
@@ -84,16 +84,16 @@ class AccountController extends Controller
         else if ($request->name =="" )
         {
             return back()
-                ->with ('notification', 'ERROR: customer name empty, please typing in');
+                ->with ('notification', 'ERROR: User name empty, please typing in');
         }
         else if ($request-> email=="")
         {
             return back()
-                ->with ('notification', 'ERROR: customer email empty, please typing in');
+                ->with ('notification', 'ERROR: User email empty, please typing in');
         }
         $email = $request->email;
-        $customer = customer::where('email', $email)->first();
-        if ($customer)
+        $User = User::where('email', $email)->first();
+        if ($User)
         {   return back()
                 ->with('notification', 'ERROR: Email already exist');
         }
@@ -101,13 +101,12 @@ class AccountController extends Controller
             $data=[
                 'name'=> $request->name,
                 'email'=> $request->email,
-                'password'=> md5($request->password),
-                'avatar' => null,
-                'level'=> 2,
+                'password'=> bcrypt($request->password),
+                'level'=> Constant::user_level_client,
                 'description' => 'abc',
             ];
 
-            $this-> customerService-> create($data);
+            $this-> UserService-> create($data);
 
             return redirect('acc/login')
                 ->with('notification','Registered successfully, please login');
@@ -115,5 +114,16 @@ class AccountController extends Controller
 
 
 
+    }
+
+    public function myOrderIndex()
+    {
+        $orders = $this -> orderService -> getOrderById(Auth::id());
+        return view ('front.my-order.index',compact('orders'));
+    }
+    public function myOrderShow($id)
+    {
+        $order = $this -> orderService -> find($id);
+        return view ('front.my-order.show',compact('order'));
     }
 }

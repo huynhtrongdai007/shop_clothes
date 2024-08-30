@@ -13,8 +13,11 @@ class ProductImages extends Model
        'product_id',
        'path'
     ];
+    protected $table = 'product_images';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 
     public function product() {
-        return $this->hasOne(Product::class,'id','product_id');
+        return $this->belongsTo(Product::class,'id','product_id');
     }
 }

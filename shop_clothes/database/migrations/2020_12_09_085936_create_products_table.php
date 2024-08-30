@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->integer('brand_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('user_id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('content')->nullable();
@@ -26,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->double('discount')->nullable();
             $table->double('weight')->nullable();
             $table->string('sku')->nullable();
-            $table->boolean('featured')->nullable();
+            $table->boolean('featured')->default(0);
             $table->string('tag')->nullable();
             $table->timestamps();
             $table->SoftDeletes();

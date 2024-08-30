@@ -12,9 +12,9 @@ class BaseService implements ServiceInterface
         return $this->repository->all();
     }
 
-    public function get($id)
+    public function find($id)
     {
-        return $this->repository->get($id);
+        return $this->repository->find($id);
     }
 
     public function create(array $data)
@@ -24,11 +24,18 @@ class BaseService implements ServiceInterface
 
     public function update(array $data, $id)
     {
-        return $this->repository->update($id, $data);
+        return $this->repository->update($data, $id);
     }
 
     public function delete($id)
     {
         return $this->repository->delete($id);
     }
+
+
+    public function searchAndPaginate($searchBy, $keyword, $perPage= 5)
+    {
+        return $this->repository->searchAndPaginate($searchBy, $keyword, $perPage);
+    }
+
 }
